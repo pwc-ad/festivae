@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Link from "./Link.astro";
+---
+
+<footer class="flex flex-col gap-y-3 font-tox text-3xl font-semibold">
+  <p>
+    Donaciones y aportes al alias:
+    <button class="rounded-2xl border-4 border-dashed p-2" id="alias">
+      FESTIVAE.APORTES
+    </button>
+  </p>
+  <div class="flex flex-col gap-y-3">
+    <p>Seguinos en nuestras redes:</p>
+    <ul class="flex items-center justify-around gap-3 max-md:flex-col">
+      <li>
+        <Link
+          class="flex w-full items-center gap-2 rounded-2xl p-2 underline"
+          external
+          href="https://www.instagram.com/festiv.ae/"
+        >
+          <Icon aria-hidden="true" class="size-6" name="mdi:instagram" />
+          Instagram
+        </Link>
+      </li>
+      <li>
+        <Link
+          class="flex w-full items-center gap-2 rounded-2xl p-2 underline"
+          external
+          href="https://www.youtube.com/@festivaaee"
+        >
+          <Icon aria-hidden="true" class="size-6" name="mdi:youtube" />
+          YouTube
+        </Link>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const alias = document.getElementById("alias") as HTMLButtonElement;
+
+  alias.addEventListener("click", async () => {
+    const text = alias.textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+      alert(`¡Se copió "${text}" al portapapeles!`);
+    } catch (error) {
+      alert(`¡No se pudo copiar "${text}" al portapapeles!`);
+    }
+  });
+</script>

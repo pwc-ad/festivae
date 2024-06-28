@@ -1,0 +1,101 @@
+---
+import { Image, getImage } from "astro:assets";
+
+import CountDown from "../components/Countdown/Countdown.astro";
+import Background from "../components/Background.astro";
+import Link from "../components/Link.astro";
+import logo from "../images/logo.png";
+import map from "../images/map.png";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
+
+const ogLogo = await getImage({ src: logo, width: 640 });
+
+const LOGO_WIDTHS = [640, 768, 992];
+const MAP_WIDTHS = [640, 768];
+---
+
+<Layout
+  class="flex items-center justify-center"
+  title={"FestivAE — 06-07-2024"}
+  description="Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)"
+  openGraph={{
+    basic: {
+      image: ogLogo.src,
+      title:
+        "Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)",
+      type: "website",
+    },
+  }}
+>
+  <Background
+    class="flex min-h-dvh w-full max-w-screen-lg flex-col justify-around gap-8 px-4 py-2 text-center text-neutral-50 md:justify-between"
+  >
+    <header
+      class="flex h-1/4 items-center justify-between gap-2 text-center font-tox max-md:flex-col max-md:rounded-2xl max-md:border-4 max-md:border-dashed"
+    >
+      <div
+        class="w-full max-w-xs py-4 font-semibold uppercase md:rounded-2xl md:border-4 md:border-dashed"
+      >
+        <p class="text-7xl">Sábado</p>
+        <p class="text-4xl">6 <small>de</small> Julio</p>
+      </div>
+      <div
+        class="w-full max-w-xs py-4 font-semibold uppercase md:rounded-2xl md:border-4 md:border-dashed"
+      >
+        <p class="text-7xl">18 <small>a</small> 00<small>hs</small></p>
+        <p class="text-4xl">Entrada Pública</p>
+      </div>
+    </header>
+    <main class="flex flex-col items-center gap-8">
+      <header class="sr-only">
+        <h1>Festival de Artes Electrónicas de la UNTREF (FESTIVAE)</h1>
+      </header>
+      <div class="flex flex-col font-microgramma text-2xl uppercase italic">
+        <p class="w-full text-left">Nos sostenemos creando</p>
+        <Image
+          src={logo}
+          alt="Logo del FestivAE"
+          sizes={astroImageWidthsToMatchingSizes(LOGO_WIDTHS)}
+          widths={LOGO_WIDTHS}
+        />
+        <p class="w-full text-right">Resistencia y reexistencia</p>
+      </div>
+      <div
+        class="flex max-w-screen-md flex-col font-microgramma text-lg uppercase italic sm:text-xl md:text-3xl"
+      >
+        <p class="w-full text-center">
+          <span aria-hidden="true">// </span>
+          Shows en vivo
+          <span aria-hidden="true"> //</span>
+          <span aria-hidden="true" class="sm:hidden"><br />// </span>
+          Obras
+          <span aria-hidden="true"> //</span>
+          <br />
+          <span aria-hidden="true">// </span>
+          Instalaciones
+          <span aria-hidden="true"> //</span>
+          <span aria-hidden="true" class="sm:hidden"><br />// </span>
+          Performance
+          <span aria-hidden="true"> //</span>
+        </p>
+      </div>
+      <CountDown />
+      <Link
+        class="max-w-screen-md rounded-2xl"
+        external
+        href="https://www.google.com/maps/place/UNTREF+Sede+Lynch/@-34.5988708,-58.5278781,19z/data=!4m6!3m5!1s0x95bcb7bf5c7fe83b:0x5694f47b93932ceb!8m2!3d-34.5984469!4d-58.5277789!16s%2Fg%2F11b8jctkgn?entry=ttu"
+      >
+        <p class="sr-only">Dirección:</p>
+        <Image
+          src={map}
+          alt="Vista desde arriba de la sede UNTREF Villa Lynch"
+          sizes={astroImageWidthsToMatchingSizes(MAP_WIDTHS)}
+          widths={MAP_WIDTHS}
+        />
+      </Link>
+    </main>
+    <Footer />
+  </Background>
+</Layout>

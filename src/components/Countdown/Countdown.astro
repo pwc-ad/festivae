@@ -1,0 +1,72 @@
+---
+import { getCountdown, getCountdownStatus } from "./logic/countdown";
+---
+
+<div
+  aria-hidden="true"
+  class="countdown-blink font-tox text-3xl font-bold uppercase max-md:whitespace-pre-line lg:text-4xl"
+  id="countdown"
+>
+  {getCountdownStatus(getCountdown())}
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes blink {
+      0% {
+        color: #c23127;
+      }
+      12.5% {
+        color: #d12422;
+      }
+      25% {
+        color: #ea2f20;
+      }
+      37.5% {
+        color: #eba34a;
+      }
+      50% {
+        color: #e7b651;
+      }
+      62.5% {
+        color: #efe2af;
+      }
+      75% {
+        color: #f3e9cc;
+      }
+      87.5% {
+        color: #fafafa;
+      }
+    }
+    .countdown-blink {
+      animation-name: blink;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+      animation-iteration-count: infinite;
+    }
+  }
+</style>
+
+<script>
+  import { getCountdown, getCountdownStatus } from "./logic/countdown";
+  const countdown = document.getElementById("countdown");
+
+  let interval: NodeJS.Timeout;
+
+  function updateCountDown() {
+    const time = getCountdown();
+    countdown.textContent = getCountdownStatus(time);
+    if (!time) {
+      countdown.style.animationPlayState = "paused";
+      countdown.style.animationIterationCount = "0";
+      clearInterval(interval);
+    }
+  }
+
+  interval = setInterval(updateCountDown, 1000);
+
+  countdown.style.animationPlayState = "running";
+  updateCountDown();
+</script>

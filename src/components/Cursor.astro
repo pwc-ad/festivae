@@ -1,0 +1,119 @@
+---
+
+---
+
+<div
+  class="pointer-events-none fixed left-0 top-0 z-50 hidden size-28"
+  id="cursor"
+>
+  <div class="size-full rounded-full backdrop-invert transition delay-150">
+  </div>
+</div>
+<script>
+  const hiddenClass = "hidden";
+  const scaledClass = "scale-125";
+
+  // Extended from https://medium.com/14islands/developing-a-performant-custom-cursor-89f1688a02eb
+
+  const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
+
+  type Point = {
+    x: number;
+    y: number;
+  };
+
+  class Cursor {
+    #element = document.getElementById("cursor");
+    #pointer = this.#element.firstElementChild;
+    #cursor: Point;
+    #target: Point;
+    #raf: number;
+    #speed: number;
+
+    constructor() {
+      // config
+      this.#target = { x: 0.5, y: 0.5 }; // mouse position
+      this.#cursor = { x: 0.5, y: 0.5 }; // cursor position
+      this.#speed = 0.15;
+      this.#init();
+    }
+
+    hide() {
+      this.#element.classList.add(hiddenClass);
+    }
+
+    #init() {
+      window.addEventListener("pointermove", this.#onPointerMove.bind(this));
+      this.#raf = requestAnimationFrame(this.render);
+    }
+
+    #onPointerMove(event: PointerEvent) {
+      if (
+        event.pointerType === "mouse" &&
+        this.#element.classList.contains(hiddenClass)
+      ) {
+        this.#element.classList.remove(hiddenClass);
+        // TODO remove this ugly transform in favor of local transform
+        this.#element.style.transform = `translate3d(calc(100vw * var(--cursor-x) - ${this.#element.clientWidth / 2}px), calc(100vh * var(--cursor-y) - ${this.#element.clientHeight / 2}px), 0)`;
+      }
+
+      if (getComputedStyle(event.target as HTMLElement).cursor === "pointer") {
+        this.#pointer.classList.add(scaledClass);
+      } else {
+        this.#pointer.classList.remove(scaledClass);
+      }
+
+      //get normalized mouse coordinates [0, 1]
+      this.#target.x = event.clientX / window.innerWidth;
+      this.#target.y = event.clientY / window.innerHeight;
+
+      // trigger loop if no loop is active
+      if (!this.#raf) {
+        this.#raf = requestAnimationFrame(this.render);
+      }
+    }
+    #render() {
+      //calculate lerped values
+      this.#cursor.x = lerp(this.#cursor.x, this.#target.x, this.#speed);
+      this.#cursor.y = lerp(this.#cursor.y, this.#target.y, this.#speed);
+      // TODO don't rely on global style
+      document.documentElement.style.setProperty(
+        "--cursor-x",
+        this.#cursor.x.toString(),
+      );
+      document.documentElement.style.setProperty(
+        "--cursor-y",
+        this.#cursor.y.toString(),
+      );
+
+      //cancel loop if mouse stops moving
+      const delta = Math.sqrt(
+        Math.pow(this.#target.x - this.#cursor.x, 2) +
+          Math.pow(this.#target.y - this.#cursor.y, 2),
+      );
+
+      if (delta < 0.001) {
+        cancelAnimationFrame(this.#raf);
+        this.#raf = null;
+        return;
+      }
+      //or continue looping if mouse is moving
+      this.#raf = requestAnimationFrame(this.render);
+    }
+    render = this.#render.bind(this);
+  }
+
+  let cursor: Cursor | undefined;
+
+  document.addEventListener("astro:page-load", () => {
+    cursor = new Cursor();
+  });
+
+  window.addEventListener(
+    "resize",
+    () => {
+      cursor?.hide();
+    },
+    { passive: true },
+  );
+</script>

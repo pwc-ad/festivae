@@ -1,0 +1,18 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+
+interface Props extends JSX.AnchorHTMLAttributes {
+  href: string;
+  external?: boolean;
+}
+
+const { external, ...props } = Astro.props;
+---
+
+<a
+  {...props}
+  target={external ? "_blank" : props.target}
+  rel={external ? "noopener noreferrer" : props.rel}
+>
+  <slot />
+</a>

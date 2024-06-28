@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+
+import background from "../images/background.jpg";
+import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
+
+interface Props {
+  class?: string;
+  imageClass?: string;
+}
+
+const BACKGROUND_WIDTHS = [640, 768, 1024];
+
+const containerClass =
+  "bg-cover container min-h-dvh max-w-screen-lg relative bg-neutral-900 w-full";
+---
+
+<div class:list={containerClass}>
+  <Image
+    class="absolute inset-0 h-full select-none bg-neutral-900 object-cover"
+    src={background}
+    alt="Textura de chapa de acero carbonizado cruzada"
+    sizes={astroImageWidthsToMatchingSizes(BACKGROUND_WIDTHS)}
+    widths={BACKGROUND_WIDTHS}
+  />
+  <div class:list={["relative z-10", Astro.props.class]}>
+    <slot />
+  </div>
+</div>
+
+<style is:global>
+  * {
+    text-shadow: 2px 2px 4px #171717;
+  }
+</style>
