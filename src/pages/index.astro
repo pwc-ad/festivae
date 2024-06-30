@@ -11,6 +11,9 @@ import Footer from "../components/Footer.astro";
 import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
 
 const ogLogo = await getImage({ src: logo, width: 640, format: "png" });
+const title = "FestivAE — 6 de Julio de 2024";
+const description =
+  "Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)";
 
 const LOGO_WIDTHS = [640, 768, 992];
 const MAP_WIDTHS = [640, 768];
@@ -18,14 +21,16 @@ const MAP_WIDTHS = [640, 768];
 
 <Layout
   class="flex items-center justify-center"
-  title={"FestivAE — 06-07-2024"}
-  description="Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)"
+  title={title}
+  description={description}
   openGraph={{
     basic: {
       image: ogLogo.src,
-      title:
-        "Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)",
+      title,
       type: "website",
+    },
+    optional: {
+      description,
     },
   }}
 >
