@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
 
-const ogLogo = await getImage({ src: logo, width: 640 });
+const ogLogo = await getImage({ src: logo, width: 640, format: "png" });
 
 const LOGO_WIDTHS = [640, 768, 992];
 const MAP_WIDTHS = [640, 768];
