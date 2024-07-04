@@ -21,24 +21,10 @@ import Cursor from "../components/Cursor.astro";
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/festivae/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/festivae/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/festivae/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/festivae/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <SEO {...seoProps} />
     <title>{title}</title>
@@ -46,7 +32,7 @@ import Cursor from "../components/Cursor.astro";
     <style is:global>
       @font-face {
         font-family: "Microgramma D Extended";
-        src: url("/festivae/fonts/microgramma-d-extended-bold_pPR0Q/Microgramma D Extended Bold/Microgramma D Extended Bold.otf")
+        src: url("/fonts/microgramma-d-extended-bold_pPR0Q/Microgramma D Extended Bold/Microgramma D Extended Bold.otf")
           format("opentype");
         font-weight: bold;
         font-style: normal;
@@ -54,8 +40,7 @@ import Cursor from "../components/Cursor.astro";
       }
       @font-face {
         font-family: "Tox Typewriter";
-        src: url("/festivae/fonts/tox_typewriter/Tox Typewriter.ttf")
-          format("truetype");
+        src: url("/fonts/tox_typewriter/Tox Typewriter.ttf") format("truetype");
         font-weight: normal;
         font-style: normal;
         font-display: swap;

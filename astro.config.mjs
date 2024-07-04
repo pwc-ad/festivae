@@ -4,7 +4,6 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  base: "festivae",
-  site: "https://pwc-ad.github.io",
+  site: "https://festivae.com.ar/",
   integrations: [tailwind(), icon()],
 });
