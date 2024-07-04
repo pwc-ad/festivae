@@ -10,13 +10,18 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
 
-const ogLogo = await getImage({ src: logo, width: 640, format: "png" });
+const ogLogo = await getImage({
+  src: logo,
+  width: 640,
+  format: "png",
+  quality: "mid",
+});
 const title = "FestivAE — 6 de Julio de 2024";
 const description =
   "Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)";
 
-const LOGO_WIDTHS = [640, 768, 992];
-const MAP_WIDTHS = [640, 768];
+const LOGO_WIDTHS = [320, 480, 640, 768, 992];
+const MAP_WIDTHS = [320, 480, 640, 768];
 ---
 
 <Layout
@@ -65,6 +70,7 @@ const MAP_WIDTHS = [640, 768];
           src={logo}
           alt="Logo del FestivAE"
           loading="eager"
+          quality="mid"
           sizes={astroImageWidthsToMatchingSizes(LOGO_WIDTHS)}
           widths={LOGO_WIDTHS}
         />
@@ -99,6 +105,7 @@ const MAP_WIDTHS = [640, 768];
         <Image
           src={map}
           alt="Vista desde arriba de la sede UNTREF Villa Lynch"
+          quality="mid"
           sizes={astroImageWidthsToMatchingSizes(MAP_WIDTHS)}
           widths={MAP_WIDTHS}
         />
