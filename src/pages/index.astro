@@ -1,7 +1,6 @@
 ---
 import { Image, getImage } from "astro:assets";
 
-import CountDown from "../components/Countdown/Countdown.astro";
 import Background from "../components/Background.astro";
 import Link from "../components/Link.astro";
 import logo from "../images/logo.png";
@@ -95,7 +94,21 @@ const MAP_WIDTHS = [320, 480, 640, 768];
           <span aria-hidden="true"> //</span>
         </p>
       </div>
-      <CountDown />
+      <div
+        class="flex flex-col gap-4 text-center font-tox text-3xl font-bold uppercase"
+      >
+        <p>¿Asististe al festival?</p>
+        <p>¿Tenés un registro del evento que nos quieras compartir?</p>
+        <p>
+          <Link
+            class="rounded-2xl border-4 border-dashed p-2 underline"
+            external
+            href="https://drive.google.com/drive/folders/1-Ew8tgZwRqEP8YdLdcklmUWw3uJnx-g3"
+          >
+            Podés hacerlo acá
+          </Link>
+        </p>
+      </div>
       <Link
         class="max-w-screen-md rounded-2xl"
         external
