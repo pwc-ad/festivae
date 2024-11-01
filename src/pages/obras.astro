@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Obra from "../components/Obra.astro";
+
+---
+<Layout title="Obras">
+  <Obra titulo="Obra 1" descripcion="Descripcion 1" />
+  <Obra titulo="Obra 2" descripcion="Descripcion 2" />
+  <Obra titulo="Obra 3" descripcion="Descripcion 4"
+    image={{
+      src: "https://via.placeholder.com/150",
+      alt: "Imagen de la obra 3"
+    }}
+  />
+
+</Layout>
