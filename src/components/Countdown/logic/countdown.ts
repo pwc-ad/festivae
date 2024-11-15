@@ -1,6 +1,6 @@
 import { pluralize } from "./pluralize";
 
-const target = new Date(Date.UTC(2024, 6, 6, 18) - 3 * 60 * 60 * 1000);
+const target = new Date(Date.UTC(2024, 10, 30, 18) + 3 * 60 * 60 * 1000);
 
 export function getCountdown() {
   const now = Date.now();

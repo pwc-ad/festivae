@@ -20,7 +20,7 @@ const containerClass =
     class="absolute inset-0 h-full select-none bg-neutral-900 object-cover"
     quality="mid"
     src={background}
-    alt="Textura de chapa de acero carbonizado cruzada"
+    alt="Una pared de ladrillos"
     loading="eager"
     sizes={astroImageWidthsToMatchingSizes(BACKGROUND_WIDTHS)}
     widths={BACKGROUND_WIDTHS}
@@ -31,6 +31,7 @@ const containerClass =
 </div>
 
 <style is:global>
+  /* TODO Why this here? */
   * {
     text-shadow: 2px 2px 4px #171717;
   }
