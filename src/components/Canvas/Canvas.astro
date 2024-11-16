@@ -1,0 +1,41 @@
+<button id="canvas-toggle" aria-pressed="false" class="">
+  Activar animación
+</button>
+<script>
+  import type p5 from "p5";
+
+  const button = document.getElementById("canvas-toggle");
+
+  let Sketch: p5;
+
+  async function toggleCanvas() {
+    const [p5, sketch] = await Promise.all([
+      import("p5").then(({ default: p5 }) => p5),
+      import("./sketch").then(({ sketch }) => sketch),
+    ]);
+
+    if (Sketch) {
+      button.setAttribute("aria-pressed", "false");
+      button.textContent = "Activar animación";
+      Sketch.remove();
+      Sketch = undefined;
+    } else {
+      Sketch = new p5(sketch, document.body);
+      button.setAttribute("aria-pressed", "true");
+      button.textContent = "Detener animación";
+    }
+  }
+
+  function setupToggleCanvas() {
+    button.addEventListener("click", toggleCanvas);
+  }
+  document.addEventListener("astro:page-load", setupToggleCanvas);
+
+  function removeToggleCanvas() {
+    if (Sketch) {
+      Sketch.remove();
+    }
+    button.removeEventListener("click", toggleCanvas);
+  }
+  document.addEventListener("astro:before-swap", removeToggleCanvas);
+</script>
