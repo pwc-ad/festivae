@@ -6,11 +6,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        microgramma: [
-          "'Microgramma D Extended'",
-          ...defaultTheme.fontFamily.mono,
-        ],
-        tox: ["'Tox Typewriter'", ...defaultTheme.fontFamily.mono],
+        pirulen: ["'Pirulen'", ...defaultTheme.fontFamily.sans],
+        // microgramma: [
+        //   "'Microgramma D Extended'",
+        //   ...defaultTheme.fontFamily.mono,
+        // ],
+        // tox: ["'Tox Typewriter'", ...defaultTheme.fontFamily.mono],
       },
     },
   },

@@ -4,10 +4,12 @@ import { Image, getImage } from "astro:assets";
 import Background from "../components/Background.astro";
 import Link from "../components/Link.astro";
 import logo from "../images/logo.png";
-import map from "../images/map.png";
+// import map from "../images/map.png";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
+import Countdown from "../components/Countdown/Countdown.astro";
+import Canvas from "../components/Canvas/Canvas.astro";
 
 const ogLogo = await getImage({
   src: logo,
@@ -15,7 +17,7 @@ const ogLogo = await getImage({
   format: "png",
   quality: "mid",
 });
-const title = "FestivAE — 6 de Julio de 2024";
+const title = "FestivAE — 30 de Noviembre de 2024";
 const description =
   "Festival de Artes Electronicas de la Universidad de Tres de Febrero (UNTREF)";
 
@@ -42,17 +44,13 @@ const MAP_WIDTHS = [320, 480, 640, 768];
     class="flex min-h-dvh w-full max-w-screen-lg flex-col justify-around gap-8 px-4 py-2 text-center text-neutral-50 md:justify-between"
   >
     <header
-      class="flex h-1/4 items-center justify-between gap-2 text-center font-tox max-md:flex-col max-md:rounded-2xl max-md:border-4 max-md:border-dashed"
+      class="flex h-1/4 items-center justify-between gap-2 text-center max-md:flex-col max-md:rounded-2xl"
     >
-      <div
-        class="w-full max-w-xs py-4 font-semibold uppercase md:rounded-2xl md:border-4 md:border-dashed"
-      >
+      <div class="w-full max-w-xs py-4 font-semibold uppercase">
         <p class="text-7xl">Sábado</p>
-        <p class="text-4xl">6 <small>de</small> Julio</p>
+        <p class="text-4xl">30 <small>de</small> Noviembre</p>
       </div>
-      <div
-        class="w-full max-w-xs py-4 font-semibold uppercase md:rounded-2xl md:border-4 md:border-dashed"
-      >
+      <div class="w-full max-w-xs py-4 font-semibold uppercase">
         <p class="text-7xl">18 <small>a</small> 00<small>hs</small></p>
         <p class="text-4xl">Entrada Pública</p>
       </div>
@@ -61,9 +59,7 @@ const MAP_WIDTHS = [320, 480, 640, 768];
       <header class="sr-only">
         <h1>Festival de Artes Electrónicas de la UNTREF (FESTIVAE)</h1>
       </header>
-      <div
-        class="flex flex-col font-microgramma text-lg uppercase italic md:text-2xl"
-      >
+      <div class="flex flex-col text-lg uppercase italic md:text-2xl">
         <p class="w-full text-left">Nos sostenemos creando</p>
         <Image
           src={logo}
@@ -76,7 +72,7 @@ const MAP_WIDTHS = [320, 480, 640, 768];
         <p class="w-full text-right">Resistencia y reexistencia</p>
       </div>
       <div
-        class="flex max-w-screen-md flex-col font-microgramma text-lg uppercase italic md:text-2xl"
+        class="flex max-w-screen-md flex-col text-lg uppercase italic md:text-2xl"
       >
         <p class="w-full text-center">
           <span aria-hidden="true">// </span>
@@ -94,35 +90,35 @@ const MAP_WIDTHS = [320, 480, 640, 768];
           <span aria-hidden="true"> //</span>
         </p>
       </div>
-      <div
-        class="flex flex-col gap-4 text-center font-tox text-3xl font-bold uppercase"
-      >
-        <p>¿Asististe al festival?</p>
+      <div class="flex flex-col gap-4 text-center text-3xl font-bold uppercase">
+        <Countdown />
+        <!-- <p>¿Asististe al festival?</p>
         <p>¿Tenés un registro del evento que nos quieras compartir?</p>
         <p>
           <Link
-            class="rounded-2xl border-4 border-dashed p-2 underline"
-            external
-            href="https://drive.google.com/drive/folders/1-Ew8tgZwRqEP8YdLdcklmUWw3uJnx-g3"
+          class="rounded-2xl p-2 underline"
+          external
+          href="https://drive.google.com/drive/folders/1-Ew8tgZwRqEP8YdLdcklmUWw3uJnx-g3"
           >
-            Podés hacerlo acá
+          Podés hacerlo acá
           </Link>
-        </p>
+          </p> -->
       </div>
       <Link
         class="max-w-screen-md rounded-2xl"
         external
         href="https://www.google.com/maps/place/UNTREF+Sede+Lynch/@-34.5988708,-58.5278781,19z/data=!4m6!3m5!1s0x95bcb7bf5c7fe83b:0x5694f47b93932ceb!8m2!3d-34.5984469!4d-58.5277789!16s%2Fg%2F11b8jctkgn?entry=ttu"
       >
-        <p class="sr-only">Dirección: Dr. Alfredo E. Springolo 351</p>
-        <Image
-          src={map}
-          alt="Vista desde arriba de la sede UNTREF Villa Lynch"
-          quality="mid"
-          sizes={astroImageWidthsToMatchingSizes(MAP_WIDTHS)}
-          widths={MAP_WIDTHS}
-        />
+        <p class="underline">Dirección: Dr. Alfredo E. Springolo 351</p>
+        <!-- <Image
+        src={map}
+        alt="Vista desde arriba de la sede UNTREF Villa Lynch"
+        quality="mid"
+        sizes={astroImageWidthsToMatchingSizes(MAP_WIDTHS)}
+        widths={MAP_WIDTHS}
+        /> -->
       </Link>
+      <Canvas />
     </main>
     <Footer />
   </Background>
