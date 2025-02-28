@@ -8,16 +8,14 @@ interface Props extends SEOProps {
 
 const { class: className, title, ...seoProps } = Astro.props;
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Cursor from "../components/Cursor.astro";
 ---
 
 <!doctype html>
-<html
-  class="selection:bg-orange-800/50 selection:text-neutral-50 motion-safe:scroll-smooth"
-  lang="es"
->
+<html class="motion-safe:scroll-smooth" lang="es">
   <head>
+    <title>{title}</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
@@ -27,27 +25,13 @@ import Cursor from "../components/Cursor.astro";
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <SEO {...seoProps} />
-    <title>{title}</title>
-    <ViewTransitions />
-    <style is:global>
-      @font-face {
-        font-family: "Microgramma D Extended";
-        src: url("/fonts/microgramma-d-extended-bold_pPR0Q/Microgramma D Extended Bold/Microgramma D Extended Bold.otf")
-          format("opentype");
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "Tox Typewriter";
-        src: url("/fonts/tox_typewriter/Tox Typewriter.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
+    <ClientRouter />
+    <slot name="head" />
   </head>
-  <body class="relative min-h-dvh bg-neutral-950" class:list={[className]}>
+  <body
+    class="relative min-h-dvh bg-neutral-950 text-neutral-50"
+    class:list={[className]}
+  >
     <slot />
     <Cursor />
   </body>

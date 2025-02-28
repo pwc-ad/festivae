@@ -1,0 +1,19 @@
+---
+type Props = ComponentProps<typeof Layout>;
+
+const props = Astro.props;
+
+import { ComponentProps } from "astro/types";
+import Layout from "./Layout.astro";
+---
+
+<Layout title={props.title} {...props}>
+  <nav>
+    <ul>
+      <li>
+        <a href="/">Inicio</a>
+      </li>
+    </ul>
+  </nav>
+  <slot />
+</Layout>
