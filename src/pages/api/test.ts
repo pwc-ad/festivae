@@ -3,6 +3,7 @@ export function GET({ params, request }) {
     JSON.stringify({
       name: "Astro",
       url: "https://astro.build/",
+      random: Math.random(),
     }),
   );
 }
