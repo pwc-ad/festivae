@@ -1,13 +1,28 @@
 ---
 import Logo from '../components/Logo.astro';
 import Layout from '../layouts/Layout.astro';
+import { formattedDate } from '../utils/formattedDate';
 
+const date = formattedDate({ withTime: true })
 ---
 
 <Layout>
-	<div class="text-primary hover:text-amber-300/50">
-		<Logo />
-		<h1 class="font-body text-6xl">FestivAE</h1>
-	</div>
-	<p>Fecha</p>
+	<main class="min-h-dvh flex flex-col p-5">
+		<div class="border-neutral-50 border-b">
+			<p class="text-center">Alias <b>festivae.mp</b></p>
+		</div>
+		<div class="flex-1 flex justify-center items-center">
+			<div class="flex flex-col gap-10">
+				<header>
+					<Logo class="w-full h-auto sm:max-w-sm" />
+					<h1 class="sr-only">FestivAE</h1>
+				</header>
+				<p class="text-center text-lg">{date}</p>
+			</div>
+		</div>
+		<footer class="flex justify-between flex-col md:flex-row-reverse">
+			<div>Direccion</div>
+			<div>Redes</div>
+		</footer>
+	</main>
 </Layout>
