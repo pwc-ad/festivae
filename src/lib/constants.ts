@@ -1,0 +1,1 @@
+export const DATE_UTC = new Date(Date.UTC(2025, 6, 19, 18))
