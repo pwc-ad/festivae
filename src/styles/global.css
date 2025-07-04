@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  --color-fae-yellow: #d5cf23;
+  --color-fae-purple: #7a00d1;
+  --color-fae-green: #4cca00;
+  --color-fae-orange: #f47b00;
+
+  --font-display: var(--font-turret-road), system-ui;
+  --font-body: var(--font-roboto-condensed), system-ui;
+}

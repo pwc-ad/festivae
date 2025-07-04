@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import { DATE_UTC } from '../lib/constants'
+import { Font } from 'astro:assets'
 
 const dateString = DATE_UTC.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'utc' })
 ---
@@ -11,8 +12,11 @@ const dateString = DATE_UTC.toLocaleDateString('es-AR', { day: 'numeric', month:
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>FestivAE - {dateString}</title>
+		<Font cssVariable="--font-roboto-condensed" />
+		<Font cssVariable="--font-turret-road" />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
+
