@@ -6,6 +6,8 @@ import SpotlightBackground from "../components/SpotlightBackground.astro";
 import Layout from "../layouts/Layout.astro";
 import { formattedDate } from "../utils/formattedDate";
 
+import CopyText from "../components/svelte/CopyText.svelte";
+
 const date = formattedDate({ withTime: true });
 
 interface SocialMediaLink {
@@ -38,9 +40,14 @@ const socialMediaLinks: Array<SocialMediaLink> = [
     height={1380}
     smallWidth={240}
   />
-  <main class="min-h-dvh flex flex-col p-5 relative">
-    <div class="border-neutral-50 border-b">
-      <p class="text-center">Alias <b>festivae.mp</b></p>
+  <main class="min-h-dvh flex flex-col p-5 relative container mx-auto">
+    <div class="border-neutral-50 border p-4 rounded-2xl self-center">
+      <p class="text-center">
+        Alias
+        <b>
+          <CopyText client:load copy="festivae.mp" />
+        </b>
+      </p>
     </div>
     <div class="flex-1 flex justify-center items-center">
       <div class="flex flex-col gap-10">
