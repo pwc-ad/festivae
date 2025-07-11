@@ -1,28 +1,77 @@
 ---
-import Logo from '../components/Logo.astro';
-import Layout from '../layouts/Layout.astro';
-import { formattedDate } from '../utils/formattedDate';
+import { Icon } from "astro-icon/components";
+import Link from "../components/Link.astro";
+import Logo from "../components/Logo.astro";
+import Layout from "../layouts/Layout.astro";
+import { formattedDate } from "../utils/formattedDate";
 
-const date = formattedDate({ withTime: true })
+const date = formattedDate({ withTime: true });
+
+interface SocialMediaLink {
+  href: string;
+  icon: string;
+  name: string;
+  title?: string;
+}
+
+const socialMediaLinks: Array<SocialMediaLink> = [
+  {
+    name: "Youtube",
+    href: "https://www.youtube.com/@festivaaee",
+    icon: "mdi:youtube",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/festiv.ae/",
+    icon: "mdi:instagram",
+  },
+];
 ---
 
 <Layout>
-	<main class="min-h-dvh flex flex-col p-5">
-		<div class="border-neutral-50 border-b">
-			<p class="text-center">Alias <b>festivae.mp</b></p>
-		</div>
-		<div class="flex-1 flex justify-center items-center">
-			<div class="flex flex-col gap-10">
-				<header>
-					<Logo class="w-full h-auto sm:max-w-sm" />
-					<h1 class="sr-only">FestivAE</h1>
-				</header>
-				<p class="text-center text-lg">{date}</p>
-			</div>
-		</div>
-		<footer class="flex justify-between flex-col md:flex-row-reverse">
-			<div>Direccion</div>
-			<div>Redes</div>
-		</footer>
-	</main>
+  <main class="min-h-dvh flex flex-col p-5">
+    <div class="border-neutral-50 border-b">
+      <p class="text-center">Alias <b>festivae.mp</b></p>
+    </div>
+    <div class="flex-1 flex justify-center items-center">
+      <div class="flex flex-col gap-10">
+        <header>
+          <Logo class="w-full h-auto sm:max-w-sm" />
+          <h1 class="sr-only">FestivAE</h1>
+        </header>
+        <p class="text-center text-lg">{date}</p>
+      </div>
+    </div>
+    <footer class="flex justify-between flex-col md:flex-row-reverse">
+      <p>
+        <Link
+          class="flex items-center gap-1"
+          external
+          href="https://www.google.com/maps/place/UNTREF+Sede+Lynch/@-34.5988708,-58.5278781,19z/data=!4m6!3m5!1s0x95bcb7bf5c7fe83b:0x5694f47b93932ceb!8m2!3d-34.5984469!4d-58.5277789!16s%2Fg%2F11b8jctkgn?entry=ttu"
+        >
+          <Icon aria-hidden class="size-6" name="mdi:location-on-outline" />
+          Dirección: Dr. Alfredo E. Springolo 351
+        </Link>
+      </p>
+      <div>
+        <h4 class="sr-only">Redes</h4>
+        <ul class="flex gap-2 items-center">
+          {
+            socialMediaLinks.map((link) => (
+              <li class="flex gap-3 items-center">
+                <Link
+                  class="size-8 flex items-center justify-center"
+                  external
+                  href={link.href}
+                >
+                  <Icon aria-hidden class="size-6" name={link.icon} />
+                  <span class="sr-only">{link.name}</span>
+                </Link>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </footer>
+  </main>
 </Layout>
