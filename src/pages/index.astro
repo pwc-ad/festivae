@@ -2,12 +2,21 @@
 import Logo from '../components/Logo.astro';
 import Layout from '../layouts/Layout.astro';
 import { formattedDate } from '../utils/formattedDate';
+import SpotlightBackground from '../components/SpotlightBackground.astro';
 
 const date = formattedDate({ withTime: true })
 ---
 
 <Layout>
-	<main class="min-h-dvh flex flex-col p-5">
+	<SpotlightBackground 
+		duration={7}
+		xOffset={100}
+		translateY={-350}
+		width={560}
+		height={1380}
+		smallWidth={240}
+	/>
+	<main class="min-h-dvh flex flex-col p-5 relative">
 		<div class="border-neutral-50 border-b">
 			<p class="text-center">Alias <b>festivae.mp</b></p>
 		</div>
