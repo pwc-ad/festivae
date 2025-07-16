@@ -8,4 +8,7 @@
 
   --font-display: var(--font-turret-road), system-ui;
   --font-body: var(--font-roboto-condensed), system-ui;
+
+  --drop-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
+  --text-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
 }

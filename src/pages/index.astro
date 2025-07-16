@@ -1,12 +1,15 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets"
+
+import bg from '../assets/bg.png'
+import GlowIcon from "../components/GlowIcon.astro";
+import GlowText from "../components/GlowText.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
 import SpotlightBackground from "../components/SpotlightBackground.astro";
+import CopyText from "../components/svelte/CopyText.svelte";
 import Layout from "../layouts/Layout.astro";
 import { formattedDate } from "../utils/formattedDate";
-
-import CopyText from "../components/svelte/CopyText.svelte";
 
 const date = formattedDate({ withTime: true });
 
@@ -29,9 +32,11 @@ const socialMediaLinks: Array<SocialMediaLink> = [
     icon: "mdi:instagram",
   },
 ];
+
 ---
 
 <Layout>
+  <Image class="absolute inset-0 object-cover h-dvh bg-blend-multiply" src={bg} alt="" />
   <SpotlightBackground
     duration={7}
     xOffset={100}
@@ -55,33 +60,32 @@ const socialMediaLinks: Array<SocialMediaLink> = [
           <Logo class="w-full h-auto sm:max-w-sm" />
           <h1 class="sr-only">FestivAE</h1>
         </header>
-        <p class="text-center text-lg">{date}</p>
+        <GlowText class="text-center text-2xl">{date}</GlowText>
       </div>
     </div>
-    <footer class="flex justify-between flex-col md:flex-row-reverse">
-      <p>
+    <footer class="flex items-center justify-between flex-col md:flex-row-reverse">
+      <GlowText>
         <Link
           class="flex items-center gap-1"
           external
           href="https://www.google.com/maps/place/UNTREF+Sede+Lynch/@-34.5988708,-58.5278781,19z/data=!4m6!3m5!1s0x95bcb7bf5c7fe83b:0x5694f47b93932ceb!8m2!3d-34.5984469!4d-58.5277789!16s%2Fg%2F11b8jctkgn?entry=ttu"
         >
-          <Icon aria-hidden class="size-6" name="mdi:location-on-outline" />
+          <GlowIcon class="size-6" name="mdi:location-on-outline" />
           Dirección: Dr. Alfredo E. Springolo 351
         </Link>
-      </p>
+      </GlowText>
       <div>
         <h4 class="sr-only">Redes</h4>
         <ul class="flex gap-2 items-center">
           {
             socialMediaLinks.map((link) => (
-              <li class="flex gap-3 items-center">
+              <li class="flex gap-3 md:gap-4 items-center">
                 <Link
-                  class="size-8 flex items-center justify-center"
+                  class="size-8 md:size-12 flex items-center justify-center"
                   external
                   href={link.href}
                 >
-                  <Icon aria-hidden class="size-6" name={link.icon} />
-                  <span class="sr-only">{link.name}</span>
+                    <GlowIcon class="size-6 md:size-8" description={link.name} name={link.icon} />
                 </Link>
               </li>
             ))
