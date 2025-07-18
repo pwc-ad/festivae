@@ -14,9 +14,9 @@ export interface Props {
 }
 
 const {
-  gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210, 100%, 85%, .08) 0, hsla(210, 100%, 55%, .02) 50%, hsla(210, 100%, 45%, 0) 80%)",
-  gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .06) 0, hsla(210, 100%, 55%, .02) 80%, transparent 100%)",
-  gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .04) 0, hsla(210, 100%, 45%, .02) 80%, transparent 100%)",
+  gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, var(--tw-gradient-from) 0, var(--tw-gradient-to) 50%, transparent 80%)",
+  gradientSecond = "radial-gradient(50% 50% at 50% 50%, var(--tw-gradient-from) 0, var(--tw-gradient-via) 80%, transparent 100%)",
+  gradientThird = "radial-gradient(50% 50% at 50% 50%, var(--tw-gradient-from) 0, var(--tw-gradient-via) 80%, transparent 100%)",
   translateY = -350,
   width = 560,
   height = 1380,
@@ -35,35 +35,35 @@ const durationSeconds = duration;
     style={`animation-duration: ${durationSeconds}s;`}
   >
     <div
-      class="absolute top-0 left-0"
+      class="absolute top-0 left-0 from-fae-purple/5  to-fae-purple/5"
       style={`
         transform: translateY(${translateY}px) rotate(-45deg);
         background: ${gradientFirst};
         width: ${width}px;
         height: ${height}px;
       `}
-    >
-    </div>
+    />
+
     <div
-      class="absolute top-0 left-0 origin-top-left"
+      class="absolute top-0 left-0 origin-top-left from-fae-purple/5  to-fae-green/5"
       style={`
         transform: rotate(-45deg) translate(5%, -50%);
         background: ${gradientSecond};
         width: ${smallWidth}px;
         height: ${height}px;
       `}
-    >
-    </div>
+    />
+
     <div
-      class="absolute top-0 left-0 origin-top-left"
+      class="absolute top-0 left-0 origin-top-left from-fae-purple/5  to-fae-green/5"
       style={`
         transform: rotate(-45deg) translate(-180%, -70%);
         background: ${gradientThird};
         width: ${smallWidth}px;
         height: ${height}px;
       `}
-    >
-    </div>
+    />
+
   </div>
 
   <!-- Right side spotlight -->
@@ -72,7 +72,7 @@ const durationSeconds = duration;
     style={`animation-duration: ${durationSeconds}s;`}
   >
     <div
-      class="absolute top-0 right-0"
+      class="absolute top-0 right-0 from-fae-purple/5  to-fae-purple/5"
       style={`
         transform: translateY(${translateY}px) rotate(45deg);
         background: ${gradientFirst};
@@ -82,7 +82,7 @@ const durationSeconds = duration;
     >
     </div>
     <div
-      class="absolute top-0 right-0 origin-top-right"
+      class="absolute top-0 right-0 origin-top-right from-fae-purple/5  to-fae-green/5"
       style={`
         transform: rotate(45deg) translate(-5%, -50%);
         background: ${gradientSecond};
@@ -92,7 +92,7 @@ const durationSeconds = duration;
     >
     </div>
     <div
-      class="absolute top-0 right-0 origin-top-right"
+      class="absolute top-0 right-0 origin-top-right from-fae-purple/5  to-fae-green/5"
       style={`
         transform: rotate(45deg) translate(180%, -70%);
         background: ${gradientThird};

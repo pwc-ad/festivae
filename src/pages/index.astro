@@ -6,7 +6,7 @@ import GlowIcon from "../components/GlowIcon.astro";
 import GlowText from "../components/GlowText.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
-import SpotlightBackground from "../components/SpotlightBackground.astro";
+import SpotlightBackground from "../components/SpotlightBackground/SpotlightBackground.astro";
 import CopyText from "../components/svelte/CopyText.svelte";
 import Layout from "../layouts/Layout.astro";
 import { formattedDate } from "../utils/formattedDate";
@@ -36,7 +36,7 @@ const socialMediaLinks: Array<SocialMediaLink> = [
 ---
 
 <Layout>
-  <Image class="absolute inset-0 object-cover h-dvh bg-blend-multiply" src={bg} alt="" />
+  <Image class="absolute inset-0 object-cover h-dvh bg-blend-multiply pointer-events-none" src={bg} alt="" />
   <SpotlightBackground
     duration={7}
     xOffset={100}
@@ -46,14 +46,11 @@ const socialMediaLinks: Array<SocialMediaLink> = [
     smallWidth={240}
   />
   <main class="min-h-dvh flex flex-col p-5 relative container mx-auto">
-    <div class="border-neutral-50 border p-4 rounded-2xl self-center">
-      <p class="text-center">
-        Alias
-        <b>
-          <CopyText client:load copy="festivae.mp" />
-        </b>
-      </p>
-    </div>
+
+    <CopyText client:load class="p-4 rounded-2xl self-center text-xl bg-fae-green text-neutral-900 drop-shadow-centered drop-shadow-transparent hover:drop-shadow-fae-green text-center hover:scale-105 transition active:scale-100 will-change-transform" copy="festivae.mp">
+      Hace tus aportes al alias festivae.mp
+    </CopyText>
+
     <div class="flex-1 flex justify-center items-center">
       <div class="flex flex-col gap-10">
         <header>
