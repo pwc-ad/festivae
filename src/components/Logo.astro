@@ -1,9 +1,11 @@
 ---
+import { cleanAstroClasslist } from '../lib/utils/astro';
+
 type Props = astroHTML.JSX.SVGAttributes
-const props = Astro.props;
+const {"class:list": classList, ...props} = cleanAstroClasslist(Astro.props);
 ---
 
-<svg class="drop-shadow-centered-lg hover:-translate-y-1 drop-shadow-transparent hover:drop-shadow-fae-purple transition" width="560" height="560" viewBox="0 0 560 560" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+<svg class:list={["drop-shadow-centered-lg hover:-translate-y-1 drop-shadow-transparent hover:drop-shadow-fae-purple transition", ...classList]} width="560" height="560" viewBox="0 0 560 560" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 467.961H28.3948V476.025H8.28653V508.603H28.3948V516.734H8.28653V559.255H0V467.961Z" />
     <path d="M74.4258 467.961H102.821V476.153H82.7689V508.481H102.821V516.672H82.7689V551.07H102.821V559.262H74.4258V467.961Z" />
     <path d="M149.265 539.813V527.617H157.609V539.813C157.609 547.633 160.391 551.942 167.4 551.942C174.295 551.942 177.191 547.627 177.191 539.874V536.688C177.191 528.496 174.99 524.242 168.961 519.804L160.963 513.925C153.259 508.236 149.26 502.047 149.26 490.473V487.409C149.26 473.839 156.042 467.271 167.337 467.271C178.695 467.271 185.477 473.839 185.477 487.47V498.537H177.247V487.403C177.247 479.65 174.408 475.335 167.394 475.335C160.499 475.335 157.603 479.65 157.603 487.403V490.467C157.603 497.719 159.803 502.034 165.771 506.411L173.825 512.29C181.529 517.918 185.472 524.168 185.472 536.676V539.862C185.472 553.432 178.69 560 167.451 560C156.042 560.012 149.265 553.383 149.265 539.813Z" />
