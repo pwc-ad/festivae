@@ -46,6 +46,12 @@ const description = `Festival de estudiantes de Artes Electrónicas de la Univer
           type: "website",
           ...props.openGraph?.basic,
         },
+        image: {
+          url: image.src,
+          alt: "Logo FestivAE",
+          height: image.options.height,
+          width: image.options.width,
+        },
         optional: { description, ...props.openGraph?.optional },
       }}
       titleDefault={title}
