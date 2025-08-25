@@ -1,7 +1,23 @@
 ---
 import "../styles/global.css";
 import { DATE_UTC } from "../lib/constants";
-import { Font } from "astro:assets";
+import { Font, getImage } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+import { SEO } from "astro-seo";
+import ogImage from "../assets/og-image.png";
+
+const image = await getImage({
+  src: ogImage,
+  position: "center",
+  fit: "scale-down",
+  format: "png",
+  width: 1200,
+  height: 630,
+});
+
+type Props = Omit<ComponentProps<typeof SEO>, "titleDefault">;
+
+const props = Astro.props;
 
 const dateString = DATE_UTC.toLocaleDateString("es-AR", {
   day: "numeric",
@@ -9,6 +25,9 @@ const dateString = DATE_UTC.toLocaleDateString("es-AR", {
   year: "numeric",
   timeZone: "utc",
 });
+
+const title = `FestivAE - ${dateString}`;
+const description = `Festival de estudiantes de Artes Electrónicas de la Universidad de Tres de Febrero que sucedió el ${dateString}`;
 ---
 
 <!doctype html>
@@ -17,13 +36,30 @@ const dateString = DATE_UTC.toLocaleDateString("es-AR", {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>FestivAE - {dateString}</title>
+    <SEO
+      charset="utf-8"
+      {...props}
+      openGraph={{
+        basic: {
+          title,
+          image: image.src,
+          type: "website",
+          ...props.openGraph?.basic,
+        },
+        optional: { description, ...props.openGraph?.optional },
+      }}
+      titleDefault={title}
+      twitter={{
+        description,
+        card: "summary",
+        image: image.src,
+        ...props.twitter,
+      }}
+    />
     <Font cssVariable="--font-roboto-condensed" />
     <Font cssVariable="--font-turret-road" />
   </head>
-  <body
-    class="bg-neutral-950 text-neutral-50 font-body"
-  >
+  <body class="bg-neutral-950 text-neutral-50 font-body">
     <slot />
   </body>
 </html>

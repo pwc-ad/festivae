@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 
-import bg from '../assets/bg.png'
+import bg from "../assets/bg.png";
 import GlowIcon from "../components/GlowIcon.astro";
 import GlowText from "../components/GlowText.astro";
 import Link from "../components/Link.astro";
@@ -32,11 +32,14 @@ const socialMediaLinks: Array<SocialMediaLink> = [
     icon: "mdi:instagram",
   },
 ];
-
 ---
 
 <Layout>
-  <Image class="absolute inset-0 object-cover h-dvh bg-blend-multiply pointer-events-none" src={bg} alt="" />
+  <Image
+    class="absolute inset-0 object-cover h-dvh bg-blend-multiply pointer-events-none"
+    src={bg}
+    alt=""
+  />
   <SpotlightBackground
     duration={7}
     xOffset={100}
@@ -46,7 +49,11 @@ const socialMediaLinks: Array<SocialMediaLink> = [
     smallWidth={240}
   />
   <main class="min-h-dvh flex flex-col p-5 relative container mx-auto">
-    <CopyText client:load class="p-4 rounded-2xl self-center md:text-xl bg-fae-green text-neutral-900 drop-shadow-centered drop-shadow-transparent hover:drop-shadow-fae-green text-center hover:scale-105 transition active:scale-100 will-change-transform" copy="festivae.mp">
+    <CopyText
+      client:load
+      class="p-4 rounded-2xl self-center md:text-xl bg-fae-green text-neutral-900 drop-shadow-centered drop-shadow-transparent hover:drop-shadow-fae-green text-center hover:scale-105 transition active:scale-100 will-change-transform"
+      copy="festivae.mp"
+    >
       Hace tus aportes al alias festivae.mp
     </CopyText>
     <div class="flex-1 flex justify-center items-center">
@@ -58,7 +65,9 @@ const socialMediaLinks: Array<SocialMediaLink> = [
         <GlowText class="text-center text-2xl">{date}</GlowText>
       </div>
     </div>
-    <footer class="flex items-center justify-between flex-col md:flex-row-reverse">
+    <footer
+      class="flex items-center justify-between flex-col md:flex-row-reverse"
+    >
       <GlowText>
         <Link
           class="flex items-center gap-1"
@@ -80,7 +89,11 @@ const socialMediaLinks: Array<SocialMediaLink> = [
                   external
                   href={link.href}
                 >
-                    <GlowIcon class="size-6 md:size-8" description={link.name} name={link.icon} />
+                  <GlowIcon
+                    class="size-6 md:size-8"
+                    description={link.name}
+                    name={link.icon}
+                  />
                 </Link>
               </li>
             ))
