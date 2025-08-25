@@ -32,7 +32,8 @@ const dateString = DATE_UTC.toLocaleDateString("es-AR", {
 const title = `FestivAE - ${dateString}`;
 const description = `Festival de estudiantes de Artes Electrónicas de la Universidad de Tres de Febrero que sucedió el ${dateString}`;
 const url = new URL("https://festivae.com.ar");
-const image = new URL(src, url).toString();
+// Try to force cache bust for OG image
+const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
 ---
 
 <!doctype html>
