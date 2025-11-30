@@ -7,26 +7,27 @@ import { SEO } from "astro-seo";
 import ogImage from "../assets/og-image.png";
 
 const {
-  src,
-  options: { width, height },
+    src,
+    options: { width, height },
 } = await getImage({
-  src: ogImage,
-  position: "center",
-  fit: "scale-down",
-  format: "png",
-  width: 1200,
-  height: 630,
+    src: ogImage,
+    position: "center",
+    fit: "scale-down",
+    format: "png",
+    width: 1200,
+    height: 630,
 });
 
-type Props = Omit<ComponentProps<typeof SEO>, "titleDefault">;
+type Props = Omit<ComponentProps<typeof SEO>, "titleDefault"> &
+    Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
 
-const props = Astro.props;
+const { class: className, "class:list": classList, ...props } = Astro.props;
 
 const dateString = DATE_UTC.toLocaleDateString("es-AR", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "utc",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "utc",
 });
 
 const title = `FestivAE - ${dateString}`;
@@ -38,44 +39,47 @@ const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <SEO
-      charset="utf-8"
-      canonical={url}
-      {...props}
-      openGraph={{
-        basic: {
-          title,
-          image,
-          type: "website",
-          url,
-          ...props.openGraph?.basic,
-        },
-        image: {
-          url: image,
-          alt: "Logo FestivAE",
-          height,
-          width,
-        },
-        optional: { description, ...props.openGraph?.optional },
-      }}
-      titleDefault={title}
-      twitter={{
-        title,
-        description,
-        card: "summary",
-        image,
-        site: "https://festivae.com.ar",
-        ...props.twitter,
-      }}
-    />
-    <Font cssVariable="--font-roboto-condensed" />
-    <Font cssVariable="--font-turret-road" />
-  </head>
-  <body class="bg-neutral-950 text-neutral-50 font-body">
-    <slot />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <SEO
+            charset="utf-8"
+            canonical={url}
+            {...props}
+            openGraph={{
+                basic: {
+                    title,
+                    image,
+                    type: "website",
+                    url,
+                    ...props.openGraph?.basic,
+                },
+                image: {
+                    url: image,
+                    alt: "Logo FestivAE",
+                    height,
+                    width,
+                },
+                optional: { description, ...props.openGraph?.optional },
+            }}
+            titleDefault={title}
+            twitter={{
+                title,
+                description,
+                card: "summary",
+                image,
+                site: "https://festivae.com.ar",
+                ...props.twitter,
+            }}
+        />
+        <Font cssVariable="--font-roboto-condensed" />
+        <Font cssVariable="--font-turret-road" />
+    </head>
+    <body
+        class="bg-neutral-700 text-neutral-50 font-body"
+        class:list={[className, classList]}
+    >
+        <slot />
+    </body>
 </html>

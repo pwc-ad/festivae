@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+
+type Props = ComponentProps<typeof Image> & {
+    blur?: `motion-safe:${`blur-${"xs" | "sm" | "md" | "lg" | "xl" | `${number}xl` | `[${number}${string}]`}`}`;
+};
+
+const {
+    blur = "motion-safe:blur-sm",
+    class: className,
+    ...props
+} = Astro.props;
+---
+
+<Image
+    class:list={[blur, className, "opacity-0 transition"]}
+    data-blur={blur}
+    {...props}
+/>
+
+<script>
+    function isImageTag(element: HTMLElement): element is HTMLImageElement {
+        return element.tagName === "IMG";
+    }
+    function handleLoad(event: Event) {
+        const target = event.target as HTMLElement;
+
+        if (isImageTag(target)) {
+            target.classList.remove("opacity-0");
+            target.classList.remove(target.dataset.blur!);
+        }
+    }
+
+    document.body.addEventListener("load", handleLoad, { capture: true });
+</script>
