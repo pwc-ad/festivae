@@ -20,17 +20,17 @@ const {
 />
 
 <script>
-    function isImageTag(element: HTMLElement): element is HTMLImageElement {
-        return element.tagName === "IMG";
+    function handleLoad(target: HTMLImageElement) {
+        target.classList.remove("opacity-0");
+        target.classList.remove(target.dataset.blur!);
     }
-    function handleLoad(event: Event) {
-        const target = event.target as HTMLElement;
 
-        if (isImageTag(target)) {
-            target.classList.remove("opacity-0");
-            target.classList.remove(target.dataset.blur!);
+    Array.from(document.getElementsByTagName("img")).forEach((image) => {
+        if (image.complete) {
+            handleLoad(image);
+            return;
         }
-    }
 
-    document.body.addEventListener("load", handleLoad, { capture: true });
+        image.onload = () => handleLoad(image);
+    });
 </script>
