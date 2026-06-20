@@ -35,22 +35,22 @@ const socialMediaLinks: Array<SocialMediaLink> = [
 ---
 
 <Layout>
-    <FadeImage
-        class="absolute inset-0 object-cover h-dvh bg-blend-multiply pointer-events-none w-full"
+    <!-- <FadeImage
+        class="absolute inset-0 object-cover h-dvh bg-blend-multiply pointer-events-none w-full opacity-50"
         src={bg}
         priority
         widths={[240, 540, 720, bg.width]}
         sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1920px) 720px, ${bg.width}px`}
         alt=""
-    />
-    <FadeImage
+    /> -->
+    <!-- <FadeImage
         class="absolute left-0 inset-y-0 object-contain object-left h-dvh pointer-events-none starting:opacity-0 transition w-full"
         src={shape}
         priority
         widths={[240, 540, 720, shape.width]}
         sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1920px) 720px, ${shape.width}px`}
         alt=""
-    />
+    /> -->
     <SpotlightBackground
         duration={7}
         xOffset={100}
@@ -60,11 +60,11 @@ const socialMediaLinks: Array<SocialMediaLink> = [
         smallWidth={240}
     />
     <main
-        class="min-h-dvh flex flex-col p-5 relative container mx-auto starting:opacity-0 motion-safe:starting:blur-sm transition"
+        class="min-h-dvh flex flex-col p-5 relative container mx-auto starting:opacity-0 motion-safe:starting:blur-sm transition z-10"
     >
         <CopyText
             client:load
-            class="p-4 rounded-2xl self-center md:text-xl bg-fae-purple text-neutral-50 drop-shadow-centered drop-shadow-transparent hover:drop-shadow-fae-purple text-center hover:scale-105 transition active:scale-100 will-change-transform"
+            class="p-4 rounded-2xl self-center md:text-xl bg-fae-orange text-neutral-950 drop-shadow-centered drop-shadow-transparent hover:drop-shadow-black text-center hover:scale-105 transition active:scale-100 will-change-transform"
             copy="festivae.mp"
         >
             <span> Hace tus aportes al alias festivae.mp </span>
@@ -75,7 +75,7 @@ const socialMediaLinks: Array<SocialMediaLink> = [
                     <Logo class="w-full h-auto sm:max-w-md -mb-20" />
                     <GlowText
                         as="h1"
-                        class="font-body text-6xl sm:text-8xl tracking-widest text-center drop-shadow-centered-lg drop-shadow-fae-purple"
+                        class="font-body text-6xl sm:text-8xl tracking-widest text-center drop-shadow-centered-lg drop-shadow-neutral-950"
                     >
                         FESTIVAE
                     </GlowText>
@@ -90,7 +90,7 @@ const socialMediaLinks: Array<SocialMediaLink> = [
         >
             <GlowText>
                 <Link
-                    class="flex items-center gap-1"
+                    class="flex items-center gap-1 text-2xl"
                     external
                     href="https://www.google.com/maps/place/UNTREF+Sede+Lynch/@-34.5988708,-58.5278781,19z/data=!4m6!3m5!1s0x95bcb7bf5c7fe83b:0x5694f47b93932ceb!8m2!3d-34.5984469!4d-58.5277789!16s%2Fg%2F11b8jctkgn?entry=ttu"
                 >

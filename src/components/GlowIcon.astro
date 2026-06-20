@@ -1,14 +1,18 @@
 ---
 import type { ComponentProps } from "astro/types";
 import { Icon } from "astro-icon/components";
-import {cleanAstroClasslist} from '../lib/utils/astro'
+import { cleanAstroClasslist } from "../lib/utils/astro";
 
 interface Props extends ComponentProps<typeof Icon> {
-  description?: astroHTML.JSX.Element
+    description?: astroHTML.JSX.Element;
 }
 
-const { description, ...props} = cleanAstroClasslist(Astro.props)
+const { description, ...props } = cleanAstroClasslist(Astro.props);
 ---
 
-<Icon aria-hidden class="drop-shadow-centered drop-shadow-fae-purple" {...props} />
+<Icon
+    aria-hidden
+    class="drop-shadow-centered drop-shadow-neutral-950"
+    {...props}
+/>
 {description && <span class="sr-only">{description}</span>}

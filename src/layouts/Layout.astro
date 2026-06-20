@@ -5,6 +5,7 @@ import { Font, getImage } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 import { SEO } from "astro-seo";
 import ogImage from "../assets/og-image.png";
+import DistortionField from "../components/svelte/DistortionField.svelte";
 
 const {
     src,
@@ -78,9 +79,10 @@ const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
         <Font cssVariable="--font-turret-road" />
     </head>
     <body
-        class="bg-neutral-700 text-neutral-50 font-body"
+        class="bg-fae-purple text-fae-orange font-body"
         class:list={[className, classList]}
     >
         <slot />
+        <DistortionField client:only />
     </body>
 </html>
