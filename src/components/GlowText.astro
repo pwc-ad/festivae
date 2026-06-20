@@ -7,6 +7,6 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
 const { as: Tag = "p", ...props } = cleanAstroClasslist(Astro.props);
 ---
 
-<Tag class="text-shadow-centered text-shadow-neutral-950" {...props}>
+<Tag class="text-shadow-centered text-shadow-fae-purple" {...props}>
     <slot />
 </Tag>
