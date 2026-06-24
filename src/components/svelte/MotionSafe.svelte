@@ -1,7 +1,12 @@
 <script lang="ts">
+    import type { Snippet } from "svelte";
+
     import { MatchMedia } from "./MatchMedia.svelte";
 
-    let { children } = $props();
+    let { children, fallback } = $props<{
+        children: Snippet;
+        fallback?: Snippet;
+    }>();
 
     const motionSafeMatcher = new MatchMedia(
         "(prefers-reduced-motion: no-preference)",
@@ -10,4 +15,6 @@
 
 {#if motionSafeMatcher.current}
     {@render children()}
+{:else}
+    {@render fallback()}
 {/if}

@@ -1,10 +1,15 @@
 import { on } from "svelte/events";
+import { isServer } from "../../lib/runtime";
 
 export class MatchMedia {
   #matches = $state(false);
-  #matcher: MediaQueryList;
+  #matcher: MediaQueryList = null!;
 
   constructor(query: string) {
+    if (isServer) {
+      return;
+    }
+
     this.#matcher = matchMedia(query);
     this.#matches = this.#matcher.matches;
 

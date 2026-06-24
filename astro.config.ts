@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
-
 import svelte from "@astrojs/svelte";
+import tailwindcss from "@tailwindcss/vite";
+import clientOptimalDirective from "./integrations/clientOptimalDirective/register";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,5 +22,5 @@ export default defineConfig({
       cssVariable: "--font-turret-road",
     },
   ],
-  integrations: [icon(), svelte()],
+  integrations: [clientOptimalDirective(), icon(), svelte()],
 });

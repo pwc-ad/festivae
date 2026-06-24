@@ -5,19 +5,31 @@ import { Font, getImage } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 import { SEO } from "astro-seo";
 import ogImage from "../assets/og-image.png";
+import sillas from "../assets/sillas.png";
 import DistortionField from "../components/svelte/DistortionField.svelte";
 
-const {
-    src,
-    options: { width, height },
-} = await getImage({
-    src: ogImage,
-    position: "center",
-    fit: "scale-down",
-    format: "png",
-    width: 1200,
-    height: 630,
-});
+const [
+    {
+        src: ogImageSrc,
+        options: { width: ogImageWidth, height: ogImageHeight },
+    },
+    { src: sillasSrc },
+] = await Promise.all([
+    getImage({
+        src: ogImage,
+        position: "center",
+        fit: "scale-down",
+        format: "png",
+        width: 1200,
+        height: 630,
+    }),
+    getImage({
+        src: sillas,
+        position: "center",
+        fit: "contain",
+        format: "png",
+    }),
+]);
 
 type Props = Omit<ComponentProps<typeof SEO>, "titleDefault"> &
     Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
@@ -35,7 +47,10 @@ const title = `FestivAE - ${dateString}`;
 const description = `Festival de estudiantes de Artes Electrónicas de la Universidad de Tres de Febrero que sucederá el ${dateString}`;
 const url = new URL("https://festivae.com.ar");
 // Try to force cache bust for OG image
-const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
+const image = new URL(
+    `${ogImageSrc}?cache=${crypto.randomUUID()}`,
+    url,
+).toString();
 ---
 
 <!doctype html>
@@ -60,8 +75,8 @@ const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
                 image: {
                     url: image,
                     alt: "Logo FestivAE",
-                    height,
-                    width,
+                    height: ogImageHeight,
+                    width: ogImageWidth,
                 },
                 optional: { description, ...props.openGraph?.optional },
             }}
@@ -83,6 +98,6 @@ const image = new URL(`${src}?cache=${crypto.randomUUID()}`, url).toString();
         class:list={[className, classList]}
     >
         <slot />
-        <DistortionField client:only />
+        <DistortionField fallbackImageSrc={sillasSrc} client:optimal />
     </body>
 </html>
