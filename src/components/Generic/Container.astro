@@ -1,0 +1,27 @@
+---
+import type { HTMLTag, PolymorphicAttributes } from "astro/types";
+import { cleanAstroClasslist } from "../../lib/utils/astro";
+
+type Props<Tag extends ValidTags> = PolymorphicAttributes<{
+    as: Tag;
+    gap?: keyof typeof gapVariants;
+}>;
+type ValidTags = Extract<HTMLTag, "article" | "div" | "section">;
+
+type Gap = `gap-${number}`;
+const gapVariants = {
+    sm: "gap-3 md:gap-5",
+    lg: "gap-8 md:gap-10",
+} as const satisfies Record<string, Gap | `${Gap} ${string}:${Gap}`>;
+
+const {
+    as: Tag = "section",
+    "class:list": classList,
+    gap = "sm",
+    ...props
+} = cleanAstroClasslist(Astro.props as Props<ValidTags>);
+---
+
+<Tag class:list={[classList, "flex flex-col", gapVariants[gap]]} {...props}>
+    <slot />
+</Tag>

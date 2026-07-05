@@ -1,11 +1,21 @@
 ---
+import { getImage } from "astro:assets";
+import sillas from "../assets/sillas.png";
 import GlowIcon from "../components/GlowIcon.astro";
 import GlowText from "../components/GlowText.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
 import CopyText from "../components/svelte/CopyText.svelte";
+import DistortionField from "../components/svelte/DistortionField.svelte";
 import Layout from "../layouts/Layout.astro";
 import { formattedDate } from "../utils/formattedDate";
+
+const { src: sillasSrc } = await getImage({
+    src: sillas,
+    position: "center",
+    fit: "contain",
+    format: "png",
+});
 
 const date = formattedDate({ withTime: true });
 
@@ -30,7 +40,7 @@ const socialMediaLinks: Array<SocialMediaLink> = [
 ];
 ---
 
-<Layout>
+<Layout class="bg-fae-purple text-fae-orange">
     <main
         class="min-h-dvh flex flex-col p-5 relative container mx-auto starting:opacity-0 motion-safe:starting:blur-sm transition z-10"
     >
@@ -94,4 +104,5 @@ const socialMediaLinks: Array<SocialMediaLink> = [
             </div>
         </footer>
     </main>
+    <DistortionField fallbackImageSrc={sillasSrc} client:optimal />
 </Layout>

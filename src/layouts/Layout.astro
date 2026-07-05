@@ -5,31 +5,18 @@ import { Font, getImage } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 import { SEO } from "astro-seo";
 import ogImage from "../assets/og-image.png";
-import sillas from "../assets/sillas.png";
-import DistortionField from "../components/svelte/DistortionField.svelte";
 
-const [
-    {
-        src: ogImageSrc,
-        options: { width: ogImageWidth, height: ogImageHeight },
-    },
-    { src: sillasSrc },
-] = await Promise.all([
-    getImage({
-        src: ogImage,
-        position: "center",
-        fit: "scale-down",
-        format: "png",
-        width: 1200,
-        height: 630,
-    }),
-    getImage({
-        src: sillas,
-        position: "center",
-        fit: "contain",
-        format: "png",
-    }),
-]);
+const {
+    src: ogImageSrc,
+    options: { width: ogImageWidth, height: ogImageHeight },
+} = await getImage({
+    src: ogImage,
+    position: "center",
+    fit: "scale-down",
+    format: "png",
+    width: 1200,
+    height: 630,
+});
 
 type Props = Omit<ComponentProps<typeof SEO>, "titleDefault"> &
     Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
@@ -93,11 +80,7 @@ const image = new URL(
         <Font cssVariable="--font-roboto-condensed" />
         <Font cssVariable="--font-turret-road" />
     </head>
-    <body
-        class="bg-fae-purple text-fae-orange font-body"
-        class:list={[className, classList]}
-    >
+    <body class="font-body" class:list={[className, classList]}>
         <slot />
-        <DistortionField fallbackImageSrc={sillasSrc} client:optimal />
     </body>
 </html>

@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cleanAstroClasslist } from "../../lib/utils/astro";
+
+type Props = HTMLAttributes<"ul">;
+
+const { "class:list": classList, ...props } = cleanAstroClasslist(Astro.props);
+---
+
+<ul
+    {...props}
+    class:list={[classList, "list-disc list-outside pl-8 space-y-3"]}
+>
+    <slot />
+</ul>

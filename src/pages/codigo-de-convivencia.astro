@@ -1,0 +1,145 @@
+---
+import Container from "../components/Generic/Container.astro";
+import Heading from "../components/Generic/Heading.astro";
+import List from "../components/Generic/List.astro";
+import Link from "../components/Link.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    class="dark:bg-neutral-900 dark:text-neutral-50 bg-neutral-50 text-neutral-900"
+>
+    <main
+        class="min-h-dvh flex flex-col px-4 py-6 md:py-10 relative max-w-3xl mx-auto starting:opacity-0 motion-safe:starting:blur-sm transition z-10 text-base md:text-2xl leading-relaxed tracking-wide"
+    >
+        <Container as="article" gap="lg">
+            <header>
+                <Heading class="w-full text-center">
+                    Código de convivencia FestivAE
+                </Heading>
+            </header>
+            <Container as="section">
+                <header>
+                    <Heading as="h2" id="introducción"> Introducción </Heading>
+                </header>
+                <p>
+                    El FestivAE es un festival de Artes Electrónicas y
+                    Digitales, gratuito y abierto al público, organizado y
+                    gestionado por estudiantes de la UNTREF
+                    <span class="sr-only">
+                        (universidad de Tres de Febrero)
+                    </span>
+                    . Sostenemos el festival como un espacio de celebración y encuentro
+                    entre camadas, materias y claustros.
+                </p>
+                <p>
+                    <b>
+                        A través de este código de conducta establecemos las
+                        normas de convivencia obligatorias para mantener y
+                        construir redes sanas y fructíferas:
+                    </b>
+                </p>
+                <p>
+                    <b class="uppercase">
+                        No vamos a tolerar situaciones de incomodidad y/o
+                        violencia.
+                    </b>
+                </p>
+                <p>
+                    <b class="uppercase">
+                        La organización del festivae se reserva el derecho de
+                        tomar acción para garantizar el cumplimiento de este
+                        código de conducta.
+                    </b>
+                </p>
+                <p>
+                    En caso de la violación de las normas de este código, la
+                    organización evaluará las medidas correspondientes para la
+                    sanción de las normas aquí indicadas ya sea previo, durante,
+                    o ante futuras gestiones de la organización.
+                </p>
+                <p>
+                    La misión de este protocolo es cuidar tanto del espacio
+                    generado como a les participantes de la organización,
+                    artistas y público. El FestivAE busca ser un espacio de
+                    encuentro, colaboración y expresión sin perder de vista la
+                    seguridad e integridad de sus asistentes.
+                </p>
+            </Container>
+            <Container as="section">
+                <header>
+                    <Heading as="h2" id="codigo">
+                        Código de convivencia
+                    </Heading>
+                </header>
+                <p>
+                    Esperamos que todas las personas que asistan a los eventos o
+                    las gestiones de la organización respeten estos parámetros
+                    de participación y colaboración:
+                </p>
+                <List>
+                    <li>
+                        Mantener en todo momento un diálogo amigable y
+                        respetuoso que fomente la mejor versión del intercambio
+                        posible.
+                    </li>
+                    <li>
+                        Respetar la diversidad en todas sus formas: cultural,
+                        género, orientación sexual, discapacidad, apariencia
+                        física, edad, profesional, religiosa, perspectivas
+                        ideológicas, etc.
+                    </li>
+                    <li>
+                        No discriminar, excluir, acosar o ejercer actos que de
+                        cualquier manera menoscaben la dignidad de las personas.
+                    </li>
+                    <li>
+                        Responsabilizarse del espacio compartido cuidándolo.
+                    </li>
+                </List>
+            </Container>
+            <Container as="section">
+                <header>
+                    <Heading as="h2" id="contacto">
+                        Contactá a la organización
+                    </Heading>
+                </header>
+                <List>
+                    <li>
+                        <b>Previo a un evento:</b> podés contactar a la organización
+                        por medio de nuestro mail <Link
+                            class="underline"
+                            href="mailto:estudiantesaaee@gmail.com"
+                        >
+                            estudiantesaaee@gmail.com{""}
+                        </Link>, o a través de nuestro instagram{" "}
+                        <Link
+                            class="underline"
+                            external
+                            href="https://www.instagram.com/festiv.ae/"
+                        >
+                            https://www.instagram.com/festiv.ae/
+                        </Link>.
+                    </li>
+                    <li>
+                        <b>Durante un evento:</b> habilitamos la barra y la cabina
+                        (FOH) para que te acerques ante cualquier inconveniente o
+                        problema. Así mismo, podes comunicarte con cualquiera de las
+                        personas que forman parte de la organización para que puedan
+                        acompañarte (se les puede identificar por el uso de radios
+                        ‒ handys ‒).
+                    </li>
+                </List>
+                <p>
+                    Alentamos a toda persona que participe en cualquier manera
+                    del evento a comunicar cualquier situación que rompa el
+                    código de convivencia.
+                </p>
+                <p>
+                    Nos comprometemos a gestionar la información en un marco de
+                    confidencialidad y respeto.
+                </p>
+            </Container>
+        </Container>
+    </main>
+</Layout>
