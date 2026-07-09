@@ -1,16 +1,19 @@
 @import "tailwindcss";
+@import "tailwind-animations";
 
 @theme {
-    --color-fae-yellow: #d5cf23;
-    --color-fae-blue: #2858cc;
-    --color-fae-purple: #7a00d1;
-    --color-fae-green: #4cca00;
-    --color-fae-orange: #f47b00;
+  --color-fae-yellow: #d5cf23;
+  --color-fae-blue: #2858cc;
+  --color-fae-dark-blue: #050a83;
+  --color-fae-purple: #7a00d1;
+  --color-fae-green: #4cca00;
+  --color-fae-orange: #f47b00;
 
-    --font-headings: var(--font-turret-road), sans-serif, system-ui;
-    --font-body: var(--font-roboto-condensed), sans-serif, system-ui;
+  --font-headings: var(--font-turret-road), sans-serif, system-ui;
+  --font-body: var(--font-roboto-condensed), sans-serif, system-ui;
+  --font-body-alt: var(--font-stack-sans-notch), sans-serif, system-ui;
 
-    --drop-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
-    --text-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
-    --drop-shadow-centered-lg: 0px 0px 0.3rem rgb(0, 0, 0 / 0.25);
+  --drop-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
+  --text-shadow-centered: 0px 0px 0.25rem rgb(0, 0, 0 / 0.25);
+  --drop-shadow-centered-lg: 0px 0px 0.3rem rgb(0, 0, 0 / 0.25);
 }

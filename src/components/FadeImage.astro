@@ -2,35 +2,65 @@
 import { Image } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 
+import { auto, type Auto } from "../lib/constants";
+
 type Props = ComponentProps<typeof Image> & {
-    blur?: `motion-safe:${`blur-${"xs" | "sm" | "md" | "lg" | "xl" | `${number}xl` | `[${number}${string}]`}`}`;
+  blur?: `motion-safe:${`blur-${"xs" | "sm" | "md" | "lg" | "xl" | `${number}xl` | `[${number}${string}]`}`}`;
+  optimal?: boolean | Auto;
 };
 
 const {
-    blur = "motion-safe:blur-sm",
-    class: className,
-    ...props
+  blur = "motion-safe:blur-sm",
+  class: className,
+  optimal = auto,
+  ...props
 } = Astro.props;
 ---
 
 <Image
-    class:list={[blur, className, "opacity-0 transition"]}
-    data-blur={blur}
-    {...props}
+  class:list={[blur, className, "opacity-0 transition"]}
+  data-blur={blur}
+  data-optimal={optimal ?? auto}
+  {...props}
 />
 
 <script>
-    function handleLoad(target: HTMLImageElement) {
-        target.classList.remove("opacity-0");
-        target.classList.remove(target.dataset.blur!);
-    }
+  import { auto, type Auto } from "../lib/constants";
+  import { isOptimal } from "../lib/runtime";
+  import type { StringBoolean } from "../lib/types";
 
-    Array.from(document.getElementsByTagName("img")).forEach((image) => {
-        if (image.complete) {
-            handleLoad(image);
-            return;
+  const opacity0 = "opacity-0";
+
+  async function handleLoad(target: HTMLImageElement) {
+    const optimalTarget = (target.dataset.optimal ?? auto) as
+      StringBoolean | Auto;
+
+    if (
+      optimalTarget === auto ||
+      (await isOptimal().then((optimal) => {
+        const result = optimalTarget === `${optimal}`;
+
+        if (!result) {
+          target.src = "";
+          target.style.display = "none";
         }
 
-        image.onload = () => handleLoad(image);
+        return result;
+      }))
+    ) {
+      target.classList.remove(opacity0);
+      target.classList.remove(target.dataset.blur!);
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    Array.from(document.getElementsByTagName("img")).forEach((image) => {
+      if (image.complete) {
+        handleLoad(image);
+        return;
+      }
+
+      image.onload = () => handleLoad(image);
     });
+  });
 </script>

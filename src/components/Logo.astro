@@ -6,19 +6,19 @@ const { "class:list": classList, ...props } = cleanAstroClasslist(Astro.props);
 ---
 
 <svg
-    {...props}
-    class:list={[
-        "drop-shadow-centered-lg drop-shadow-neutral-950 transition",
-        ...classList,
-    ]}
-    width="560"
-    height="560"
-    viewBox="0 0 560 560"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
+  {...props}
+  class:list={[
+    "drop-shadow-centered-lg drop-shadow-neutral-950 transition",
+    ...classList,
+  ]}
+  width="560"
+  height="560"
+  viewBox="0 0 560 560"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
 >
-    <!-- This is the text -->
-    <!-- <g>
+  <!-- This is the text -->
+  <!-- <g>
         <path
             d="M0 467.961H28.3948V476.025H8.28653V508.603H28.3948V516.734H8.28653V559.255H0V467.961Z"
         ></path>
@@ -42,9 +42,9 @@ const { "class:list": classList, ...props } = cleanAstroClasslist(Astro.props);
             d="M531.605 467.961H560V476.153H539.949V508.481H560V516.672H539.949V551.07H560V559.262H531.605V467.961Z"
         ></path>
     </g> -->
-    <path
-        d="M446.964 79.6233L416.205 115.62V3.81513L338.176 113.435V4.39502L257.601 114.014V0L199.182 79.6233H99.659L0 182.259V370.147H131.221V402.774H145.9V321.301H131.221V354.3H14.6782V189.035L105.536 95.4637H206.281L242.923 45.5252V159.479L323.497 49.8592V160.058L401.527 50.4391V156.17L453.395 95.4637H545.232V354.3H292.693V298.673H278.015V425.402H292.693V370.147H559.91V79.6233H446.964Z"
-    ></path>
-    <path d="M196.229 298.673H181.551V425.402H196.229V298.673Z"></path>
-    <path d="M245.508 321.301H230.83V402.774H245.508V321.301Z"></path>
+  <path
+    d="M446.964 79.6233L416.205 115.62V3.81513L338.176 113.435V4.39502L257.601 114.014V0L199.182 79.6233H99.659L0 182.259V370.147H131.221V402.774H145.9V321.301H131.221V354.3H14.6782V189.035L105.536 95.4637H206.281L242.923 45.5252V159.479L323.497 49.8592V160.058L401.527 50.4391V156.17L453.395 95.4637H545.232V354.3H292.693V298.673H278.015V425.402H292.693V370.147H559.91V79.6233H446.964Z"
+  ></path>
+  <path d="M196.229 298.673H181.551V425.402H196.229V298.673Z"></path>
+  <path d="M245.508 321.301H230.83V402.774H245.508V321.301Z"></path>
 </svg>

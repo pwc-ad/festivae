@@ -8,8 +8,8 @@ const { "class:list": classList, ...props } = cleanAstroClasslist(Astro.props);
 ---
 
 <ul
-    {...props}
-    class:list={[classList, "list-disc list-outside pl-8 space-y-3"]}
+  {...props}
+  class:list={[classList, "list-outside list-disc space-y-3 pl-8"]}
 >
-    <slot />
+  <slot />
 </ul>

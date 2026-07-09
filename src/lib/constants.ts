@@ -5,3 +5,6 @@ export const DATE_DISPLAY = DATE_UTC.toLocaleDateString("es-AR", {
   year: "numeric",
   timeZone: "utc",
 });
+
+export const auto = "auto";
+export type Auto = typeof auto;

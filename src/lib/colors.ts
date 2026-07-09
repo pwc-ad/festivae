@@ -10,8 +10,8 @@ export const neutral100 = bodyComputedStyle?.getPropertyValue(
 export const neutral600 = bodyComputedStyle?.getPropertyValue(
   "--color-neutral-600",
 );
-export const neutral950 = bodyComputedStyle?.getPropertyValue(
-  "--color-neutral-950",
+export const neutral900 = bodyComputedStyle?.getPropertyValue(
+  "--color-neutral-900",
 );
 export const faePurple =
   bodyComputedStyle?.getPropertyValue("--color-fae-purple");

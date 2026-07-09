@@ -1,33 +1,22 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import type { Snippet } from "svelte";
+  import type { ClassValue } from "svelte/elements";
 
   interface Props {
-	children: Snippet;
-    class?: string
-    copy: string
+    afterCopy: string;
+    children: Snippet;
+    class?: ClassValue;
+    copy: string;
   }
 
-  const { children, class: className, copy }: Props = $props()
-
-  let hasCopied = $state(false)
-  let timeout: ReturnType<typeof setTimeout>
+  const { afterCopy, children, class: className, copy }: Props = $props();
 
   async function onclick() {
-    await navigator.clipboard.writeText(copy)
-    hasCopied = true
-
-    clearTimeout(timeout)
-
-    timeout = setTimeout(() => {
-      hasCopied = false
-    }, 3000)
+    await navigator.clipboard.writeText(copy);
+    alert(afterCopy);
   }
 </script>
 
 <button class={["cursor-pointer", className]} {onclick} type="button">
-    {#if hasCopied}
-        Se copió el texto al portapapeles
-    {:else}
-        {@render children()}
-    {/if}
+  {@render children()}
 </button>

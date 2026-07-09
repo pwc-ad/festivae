@@ -72,3 +72,12 @@ export async function isProbablyWiFi() {
 
   return false;
 }
+
+export async function isOptimal() {
+  const [maybeWiFi, gpuData] = await Promise.all([
+    isProbablyWiFi(),
+    getGpuData(),
+  ]);
+
+  return maybeWiFi && gpuData.tier > 0;
+}

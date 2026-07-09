@@ -1,33 +1,36 @@
 ---
-import "../styles/global.css";
-import { DATE_UTC } from "../lib/constants";
-import { Font, getImage } from "astro:assets";
-import type { ComponentProps } from "astro/types";
 import { SEO } from "astro-seo";
+import { Font, getImage } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import type { ComponentProps } from "astro/types";
 import ogImage from "../assets/og-image.png";
+import { DATE_UTC } from "../lib/constants";
+import Nav from "../components/Nav/Nav.astro";
+import "../styles/global.css";
+import SkipTo from "../components/SkipTo.astro";
 
 const {
-    src: ogImageSrc,
-    options: { width: ogImageWidth, height: ogImageHeight },
+  src: ogImageSrc,
+  options: { width: ogImageWidth, height: ogImageHeight },
 } = await getImage({
-    src: ogImage,
-    position: "center",
-    fit: "scale-down",
-    format: "png",
-    width: 1200,
-    height: 630,
+  src: ogImage,
+  position: "center",
+  fit: "scale-down",
+  format: "png",
+  width: 1200,
+  height: 630,
 });
 
 type Props = Omit<ComponentProps<typeof SEO>, "titleDefault"> &
-    Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
+  Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
 
 const { class: className, "class:list": classList, ...props } = Astro.props;
 
 const dateString = DATE_UTC.toLocaleDateString("es-AR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "utc",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "utc",
 });
 
 const title = `FestivAE - ${dateString}`;
@@ -35,52 +38,60 @@ const description = `Festival de estudiantes de Artes Electrónicas de la Univer
 const url = new URL("https://festivae.com.ar");
 // Try to force cache bust for OG image
 const image = new URL(
-    `${ogImageSrc}?cache=${crypto.randomUUID()}`,
-    url,
+  `${ogImageSrc}?cache=${crypto.randomUUID()}`,
+  url,
 ).toString();
 ---
 
 <!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <SEO
-            charset="utf-8"
-            canonical={url}
-            description={description}
-            {...props}
-            openGraph={{
-                basic: {
-                    title,
-                    image,
-                    type: "website",
-                    url,
-                    ...props.openGraph?.basic,
-                },
-                image: {
-                    url: image,
-                    alt: "Logo FestivAE",
-                    height: ogImageHeight,
-                    width: ogImageWidth,
-                },
-                optional: { description, ...props.openGraph?.optional },
-            }}
-            titleDefault={title}
-            twitter={{
-                title,
-                description,
-                card: "summary",
-                image,
-                site: "https://festivae.com.ar",
-                ...props.twitter,
-            }}
-        />
-        <Font cssVariable="--font-roboto-condensed" />
-        <Font cssVariable="--font-turret-road" />
-    </head>
-    <body class="font-body" class:list={[className, classList]}>
-        <slot />
-    </body>
+<html lang="es" class="scrollbar-gutter-stable scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      charset="utf-8"
+      canonical={url}
+      description={description}
+      {...props}
+      openGraph={{
+        basic: {
+          title,
+          image,
+          type: "website",
+          url,
+          ...props.openGraph?.basic,
+        },
+        image: {
+          url: image,
+          alt: "Logo FestivAE",
+          height: ogImageHeight,
+          width: ogImageWidth,
+        },
+        optional: { description, ...props.openGraph?.optional },
+      }}
+      titleDefault={title}
+      twitter={{
+        title,
+        description,
+        card: "summary",
+        image,
+        site: "https://festivae.com.ar",
+        ...props.twitter,
+      }}
+    />
+    <Font cssVariable="--font-roboto-condensed" />
+    <Font cssVariable="--font-stack-sans-notch" />
+    <Font cssVariable="--font-turret-road" />
+    <ClientRouter />
+  </head>
+  <body
+    class="relative overflow-x-hidden font-body"
+    class:list={[className, classList]}
+  >
+    <SkipTo name="Contenido" href="#content" />
+    <SkipTo name="Navegación" href="#navigation" />
+    <slot />
+    <Nav />
+  </body>
 </html>

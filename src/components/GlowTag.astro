@@ -1,0 +1,22 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import { cleanAstroClasslist } from "../lib/utils/astro";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const {
+  as: Tag = "p",
+  "class:list": classList,
+  ...props
+} = cleanAstroClasslist(Astro.props);
+---
+
+<Tag
+  class:list={[
+    classList,
+    "drop-shadow-centered-lg text-shadow-centered text-shadow-neutral-950",
+  ]}
+  {...props}
+>
+  <slot />
+</Tag>
