@@ -9,7 +9,6 @@ import { redirects } from "./src/lib/redirects";
 
 // https://astro.build/config
 export default defineConfig({
-  redirects,
   vite: {
     plugins: [tailwindcss()],
   },
@@ -31,4 +30,5 @@ export default defineConfig({
     },
   ],
   integrations: [clientOptimalDirective(), icon(), svelte()],
+  redirects,
 });

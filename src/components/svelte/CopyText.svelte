@@ -1,22 +1,90 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { ClassValue } from "svelte/elements";
+  import { MediaQuery } from "svelte/reactivity";
 
   interface Props {
-    afterCopy: string;
     children: Snippet;
     class?: ClassValue;
     copy: string;
+    content: Snippet;
+    header: Snippet;
   }
 
-  const { afterCopy, children, class: className, copy }: Props = $props();
+  const { children, class: className, copy, content, header }: Props = $props();
+
+  let open = $state(false);
+  let dialog: HTMLDialogElement;
+  const motionSafeMatcher = new MediaQuery(
+    "(prefers-reduced-motion: no-preference)",
+  );
+
+  function attachDialog(element: HTMLDialogElement) {
+    dialog = element;
+  }
+
+  function onclose() {
+    open = false;
+  }
 
   async function onclick() {
     await navigator.clipboard.writeText(copy);
-    alert(afterCopy);
+    open = true;
   }
+
+  $effect(() => {
+    if (open) {
+      dialog.showModal();
+    } else {
+      dialog.close();
+    }
+  });
 </script>
 
 <button class={["cursor-pointer", className]} {onclick} type="button">
   {@render children()}
 </button>
+
+<dialog
+  class="rounded-xl p-0 shadow-2xl w-full max-w-lg m-auto fixed inset-0 z-50 transition bg-neutral-900 normal-case inset-shadow-sm inset-shadow-neutral-50/50 border-neutral-50 border animate-dialog motion-reduce:animate-dialog-duration-0"
+  style:--tw-anim-dialog-backdrop-background={"color-mix(in oklab, var(--color-neutral-900) 50%, transparent);"}
+  style:--tw-anim-dialog-backdrop-filter={`blur(${motionSafeMatcher.current ? "var(--blur-xs)" : "0px"})`}
+  {@attach attachDialog}
+  {onclose}
+>
+  <div class="p-6">
+    {#snippet renderHeader()}
+      <div
+        class="flex items-center justify-between border-b border-b-neutral-50 pb-3 mb-4"
+      >
+        <h3 class="text-xl font-semibold text-neutral-200">
+          {@render header()}
+        </h3>
+        <button
+          class="text-neutral-200 hover:text-neutral-50 text-2xl font-bold leading-none"
+          onclick={onclose}
+        >
+          &times;
+        </button>
+      </div>
+    {/snippet}
+    {@render renderHeader()}
+
+    {#snippet renderBody()}
+      <div class="text-neutral-100 mb-6 flex flex-col gap-2">
+        {@render content()}
+      </div>
+      <div class="flex w-full justify-end">
+        <!-- svelte-ignore a11y_autofocus -->
+        <button
+          autofocus
+          class="bg-neutral-200 text-neutral-950 hover:bg-neutral-50 font-bold leading-none uppercase py-2 px-5 rounded-md active:scale-95 transition"
+          onclick={onclose}
+        >
+          Entendido
+        </button>
+      </div>
+    {/snippet}
+    {@render renderBody()}
+  </div>
+</dialog>

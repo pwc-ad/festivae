@@ -1,5 +1,4 @@
 ---
-import { getImage } from "astro:assets";
 import sillas from "../assets/sillas-noise.png";
 import FadeImage from "../components/FadeImage.astro";
 
@@ -9,13 +8,12 @@ import List from "../components/Generic/List.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
 import Layout from "../layouts/Layout.astro";
+import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
 
-const { src: sillasWebp } = await getImage({
-  src: sillas,
-  position: "center",
-  fit: "contain",
-  format: "webp",
-});
+const WIDTHS = Array.from(
+  { length: 4 },
+  (_, i) => sillas.width / (i + 1),
+).reverse();
 ---
 
 <Layout class="bg-neutral-950 text-neutral-50">
@@ -105,13 +103,13 @@ const { src: sillasWebp } = await getImage({
           <li>
             <b>Previo a un evento:</b> podés contactar a la organización por medio
             de nuestro mail <Link
-              class="text-fae-orange underline"
+              class="text-fae-orange"
               href="mailto:estudiantesaaee@gmail.com"
             >
               estudiantesaaee@gmail.com{""}
             </Link>, o a través de nuestro instagram{" "}
             <Link
-              class="text-fae-orange underline"
+              class="text-fae-orange"
               external
               href="https://www.instagram.com/festiv.ae/"
             >
@@ -141,12 +139,13 @@ const { src: sillasWebp } = await getImage({
       <p class="text-4xl uppercase">FestivAE</p>
     </footer>
   </main>
-  <FadeImage
-    class="fixed inset-0 size-full object-cover opacity-30"
-    fit="cover"
-    src={sillasWebp}
-    alt="Sillas apiladas"
-    width={sillas.width}
-    height={sillas.height}
-  />
+  <div class="fixed inset-0 flex items-center justify-center opacity-30">
+    <FadeImage
+      fit="cover"
+      src={sillas}
+      widths={WIDTHS}
+      sizes={astroImageWidthsToMatchingSizes(WIDTHS)}
+      alt="Sillas apiladas"
+    />
+  </div>
 </Layout>

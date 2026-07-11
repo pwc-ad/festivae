@@ -1,16 +1,22 @@
 ---
 import type { JSX } from "astro/jsx-runtime";
+import { cleanAstroClasslist } from "../lib/utils/astro";
 
 interface Props extends JSX.AnchorHTMLAttributes {
   href: string;
   external?: boolean;
 }
 
-const { external, ...props } = Astro.props;
+const {
+  "class:list": classList,
+  external,
+  ...props
+} = cleanAstroClasslist(Astro.props);
 ---
 
 <a
   {...props}
+  class:list={["underline", classList]}
   rel={external ? "noopener noreferrer" : props.rel}
   target={external ? "_blank" : props.target}
 >

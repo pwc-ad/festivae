@@ -1,10 +1,9 @@
 ---
 import type { ComponentProps } from "astro/types";
 
-import CopyText from "../svelte/CopyText.svelte";
+import CopyBankAlias from "../svelte/CopyBankAlias.svelte";
 
 import NavLink from "./NavLink.astro";
-import { navItemClass } from "./navStyles";
 
 type Route = ComponentProps<typeof NavLink>;
 
@@ -38,18 +37,14 @@ const SOCIALS = [
     class="fixed bottom-0 z-20 flex h-16 w-full items-center justify-center md:bottom-4"
   >
     <ul
-      class="flex size-full items-center justify-between bg-neutral-900 p-4 text-xl text-neutral-300 uppercase inset-shadow-sm inset-shadow-white/50 md:max-w-sm md:rounded-xl md:border md:border-white/5 md:shadow-lg"
+      class="flex size-full items-center justify-between bg-neutral-900 p-4 text-xl text-neutral-300 uppercase inset-shadow-sm inset-shadow-neutral-50/50 md:max-w-sm md:rounded-xl md:border md:border-white/5 md:shadow-lg"
     >
       {ROUTES.map((route) => <NavLink {...route} />)}
       <li>
-        <CopyText
+        <CopyBankAlias
           client:load
-          afterCopy="Se copió nuestro alias (festivae.mp) al portapapeles, ¡Hacenos tu aporte!"
-          copy="festivae.mp"
-          class={`${navItemClass} animate-tada animate-duration-1000 animate-iteration-count-thrice hover:animate-none focus:animate-none active:scale-90 transition motion-reduce:animate-none uppercase`}
-        >
-          Aportes
-        </CopyText>
+          class="animate-tada text-neutral-50 uppercase drop-shadow-centered drop-shadow-fae-green transition animate-duration-1000 animate-iteration-count-4 hover:animate-none focus:animate-none active:scale-90 motion-reduce:animate-none"
+        />
       </li>
       {SOCIALS.map((route) => <NavLink {...route} />)}
     </ul>

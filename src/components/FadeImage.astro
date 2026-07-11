@@ -41,7 +41,9 @@ const {
         const result = optimalTarget === `${optimal}`;
 
         if (!result) {
-          target.src = "";
+          if (!target.complete) {
+            target.src = "";
+          }
           target.style.display = "none";
         }
 

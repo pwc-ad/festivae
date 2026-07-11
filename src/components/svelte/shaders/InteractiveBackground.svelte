@@ -2,7 +2,10 @@
   import { ImageTexture, Liquify, Shader, VideoTexture } from "shaders/svelte";
   import { MediaQuery } from "svelte/reactivity";
 
-  import { getGpuData, getSupportsWebm } from "../../../lib/runtime";
+  import {
+    getGpuData,
+    // getSupportsWebm
+  } from "../../../lib/runtime";
   import MotionSafe from "../MotionSafe.svelte";
 
   import Contour from "./Contour.svelte";
@@ -22,18 +25,18 @@
     async function loadSrcAsync() {
       const gpuData = await getGpuData();
 
-      if (getSupportsWebm()) {
-        videoSrc = (
-          gpuData.isMobile
-            ? await import("../../../assets/sillas.mobile.webm")
-            : await import("../../../assets/sillas.webm")
-        ).default;
-        return;
-      }
+      // if (getSupportsWebm()) {
+      //   videoSrc = (
+      //     gpuData.isMobile
+      //       ? await import("../../../assets/sillas.mobile.webm")
+      //       : await import("../../../assets/sillas.webm")
+      //   ).default;
+      //   return;
+      // }
 
       videoSrc = (
         gpuData.isMobile
-          ? await import("../../../assets/sillas.mobile.mp4")
+          ? await import("../../../assets/sillas.black.mobile.mp4")
           : await import("../../../assets/sillas.mp4")
       ).default;
     }

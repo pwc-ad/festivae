@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
     import {
         BrightnessContrast,
         Grid,
@@ -93,4 +93,4 @@
             <Grid color={neutral950} rotation={45} thickness={1.5} />
         {/snippet}
     </MotionSafe>
-</Shader>
+</Shader> -->

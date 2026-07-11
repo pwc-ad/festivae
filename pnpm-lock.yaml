@@ -36,8 +36,8 @@ importers:
         specifier: ^5.56.4
         version: 5.56.4
       tailwind-animations:
-        specifier: ^1.0.1
-        version: 1.0.1(tailwindcss@4.3.2)
+        specifier: github:midudev/tailwind-animations#117e13b30437724adea42362bcbc90e4ecd8f2f0
+        version: https://codeload.github.com/midudev/tailwind-animations/tar.gz/117e13b30437724adea42362bcbc90e4ecd8f2f0(tailwindcss@4.3.2)
       tailwindcss:
         specifier: ^4.3.2
         version: 4.3.2
@@ -2116,10 +2116,11 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  tailwind-animations@1.0.1:
-    resolution: {integrity: sha512-5ouCdgfGS4kcyuzRSb/1O3o9f5Akssi7ue46PHfKjvPLMWjtnzmqM8i6ElES3tKVTyhjSaTPfLti7aB7WSxhZg==}
+  tailwind-animations@https://codeload.github.com/midudev/tailwind-animations/tar.gz/117e13b30437724adea42362bcbc90e4ecd8f2f0:
+    resolution: {gitHosted: true, integrity: sha512-P7FxPqbcR5zu1anaxvQKg2fZpkp77+bzQoCpAfyboURH9vKvja3sBeQdaNXkIxJWP/ePvVXpgJivUzzsn4tJHw==, tarball: https://codeload.github.com/midudev/tailwind-animations/tar.gz/117e13b30437724adea42362bcbc90e4ecd8f2f0}
+    version: 1.0.1
     peerDependencies:
-      tailwindcss: ^4.0.0
+      tailwindcss: 4.3.0
 
   tailwindcss@4.3.2:
     resolution: {integrity: sha512-WtctNNSH8A9jlMIqxzuYumOHU5uGZyRv0Q5svQl+oEPy5w84YpBxdb7MdqyiSPQge5jTJ6zFQLq0PFygdccSBA==}
@@ -4465,7 +4466,7 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.6.0
 
-  tailwind-animations@1.0.1(tailwindcss@4.3.2):
+  tailwind-animations@https://codeload.github.com/midudev/tailwind-animations/tar.gz/117e13b30437724adea42362bcbc90e4ecd8f2f0(tailwindcss@4.3.2):
     dependencies:
       tailwindcss: 4.3.2
 
