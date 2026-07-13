@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 import Link from "../Link.astro";
 import { navItemClass } from "./navStyles";
 
-const { pathname } = Astro.url;
+const { routePattern: pathname } = Astro;
 
 interface Props {
   href: string;
