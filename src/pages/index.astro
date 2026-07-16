@@ -1,6 +1,5 @@
 ---
-import { getImage } from "astro:assets";
-import sillas from "../assets/sillas-noise.png";
+import sillas from "../assets/sillas.png";
 import GlowTag from "../components/GlowTag.astro";
 import Logo from "../components/Logo.astro";
 import InteractiveBackground from "../components/svelte/shaders/InteractiveBackground.svelte";
@@ -13,33 +12,15 @@ import {
 import FadeImage from "../components/FadeImage.astro";
 // import Countdown from "../components/svelte/Countdown.svelte";
 import Link from "../components/Link.astro";
+import { getSillas } from "../lib/images";
 
-const { src: sillasWebp } = await getImage({
-  src: sillas,
-  position: "center",
-  fit: "contain",
-  format: "webp",
-});
+const { src: sillasSrc } = await getSillas();
 ---
 
 <Layout class="overflow-x-hidden bg-neutral-950 text-neutral-100">
   <main
     class="relative z-10 container mx-auto flex size-full max-w-3xl flex-col items-center justify-between gap-10 p-5 drop-shadow-centered-lg drop-shadow-neutral-950 transition starting:opacity-0 motion-safe:starting:blur-sm"
   >
-    <!-- <aside
-      class="sticky top-4 flex w-full items-center justify-center"
-      id="aportes"
-    >
-      <CopyText
-        client:load
-        afterCopy="¡Se copió el alias al portapapeles!"
-        inline
-        class="transform-gpu rounded-2xl border border-white/5 bg-neutral-950 p-4 text-2xl uppercase shadow-sm inset-shadow-sm shadow-fae-orange/50 inset-shadow-neutral-50/50 transition hover:scale-105 focus:scale-100 active:scale-95"
-        copy="festivae.mp"
-      >
-        <span> Hace tus aportes al alias festivae.mp </span>
-      </CopyText>
-    </aside> -->
     <article
       id="content"
       class="flex w-full flex-col items-center justify-center gap-10"
@@ -62,7 +43,7 @@ const { src: sillasWebp } = await getImage({
           class="rounded-2xl border border-white/5 bg-neutral-950 p-4 inset-shadow-sm inset-shadow-neutral-50/50 sm:p-8"
         >
           <h1
-            class="bg-conic from-fae-yellow from-10% via-fae-orange to-fae-yellow to-90% bg-size-[1ch] bg-clip-text text-5xl font-bold text-transparent uppercase text-shadow-2xs text-shadow-neutral-950/5 motion-safe:font-headings lg:text-8xl"
+            class="bg-conic from-fae-yellow from-10% via-fae-orange to-fae-yellow to-90% bg-size-[1ch] bg-clip-text text-4xl font-bold text-transparent uppercase text-shadow-2xs text-shadow-neutral-950/5 motion-safe:font-headings sm:text-7xl lg:text-8xl"
           >
             FestivAE{" "}
             <span aria-hidden="true">IX</span>
@@ -71,7 +52,7 @@ const { src: sillasWebp } = await getImage({
             </span>
           </h1>
           <h2
-            class="bg-conic from-fae-yellow from-10% via-fae-orange to-fae-yellow to-90% bg-size-[1ch] bg-clip-text text-2xl font-bold text-transparent uppercase text-shadow-2xs text-shadow-neutral-950/5 motion-safe:font-body-alt lg:text-3xl"
+            class="bg-conic from-fae-yellow from-10% via-fae-orange to-fae-yellow to-90% bg-size-[1ch] bg-clip-text text-xl font-bold text-transparent uppercase text-shadow-2xs text-shadow-neutral-950/5 motion-safe:font-body-alt sm:text-2xl lg:text-3xl"
           >
             En defensa de la universidad pública
           </h2>
@@ -110,7 +91,7 @@ const { src: sillasWebp } = await getImage({
         <GlowTag
           aria-hidden="true"
           as="div"
-          class="flex max-w-lg flex-wrap items-center justify-center gap-4 p-4 text-2xl uppercase drop-shadow-neutral-100 motion-safe:font-body-alt md:text-3xl lg:text-4xl"
+          class="flex max-w-sm flex-wrap items-center justify-center gap-4 text-2xl uppercase drop-shadow-neutral-100 motion-safe:font-body-alt md:max-w-lg md:text-3xl lg:text-4xl"
         >
           <p>
             <Link href="https://www.instagram.com/bambipunky/" external>
@@ -197,7 +178,7 @@ const { src: sillasWebp } = await getImage({
       </footer>
     </article>
   </main>
-  <InteractiveBackground fallbackImageSrc={sillasWebp} client:optimal />
+  <InteractiveBackground fallbackImageSrc={sillasSrc} client:optimal />
   <FadeImage
     class="fixed inset-0 size-full object-cover"
     fit="cover"

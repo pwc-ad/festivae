@@ -2,12 +2,12 @@
 @import "tailwind-animations";
 
 @theme {
-  --color-fae-yellow: #d5cf23;
   --color-fae-blue: #2858cc;
   --color-fae-dark-blue: #050a83;
-  --color-fae-purple: #7a00d1;
   --color-fae-green: #4cca00;
   --color-fae-orange: #f47b00;
+  --color-fae-purple: #7a00d1;
+  --color-fae-yellow: #d5cf23;
 
   --font-headings: var(--font-turret-road), sans-serif, system-ui;
   --font-body: var(--font-roboto-condensed), sans-serif, system-ui;

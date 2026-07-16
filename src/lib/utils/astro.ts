@@ -16,5 +16,5 @@ export function astroImageWidthsToMatchingSizes(widths: Array<number>) {
       (width, index) =>
         `(max-width: ${index ? widths[index + 1] : Math.round(width * (6 / 5))}px) ${width}px`,
     )
-    .join(",")}, ${widths.at(-1)}px`;
+    .join(", ")}, ${widths.at(-1)}px`;
 }

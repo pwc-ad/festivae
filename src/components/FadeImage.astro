@@ -18,7 +18,11 @@ const {
 ---
 
 <Image
-  class:list={[blur, className, "opacity-0 transition"]}
+  class:list={[
+    blur,
+    className,
+    "opacity-0 transition noscript:opacity-100 noscript:blur-none",
+  ]}
   data-blur={blur}
   data-optimal={optimal ?? auto}
   {...props}

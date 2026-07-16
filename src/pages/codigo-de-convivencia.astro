@@ -1,19 +1,12 @@
 ---
-import sillas from "../assets/sillas-noise.png";
+import sillas from "../assets/sillas.png";
 import FadeImage from "../components/FadeImage.astro";
-
 import Container from "../components/Generic/Container.astro";
 import Heading from "../components/Generic/Heading.astro";
 import List from "../components/Generic/List.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
 import Layout from "../layouts/Layout.astro";
-import { astroImageWidthsToMatchingSizes } from "../lib/utils/astro";
-
-const WIDTHS = Array.from(
-  { length: 4 },
-  (_, i) => sillas.width / (i + 1),
-).reverse();
 ---
 
 <Layout class="bg-neutral-950 text-neutral-50">
@@ -139,13 +132,11 @@ const WIDTHS = Array.from(
       <p class="text-4xl uppercase">FestivAE</p>
     </footer>
   </main>
-  <div class="fixed inset-0 flex items-center justify-center opacity-30">
-    <FadeImage
-      fit="cover"
-      src={sillas}
-      widths={WIDTHS}
-      sizes={astroImageWidthsToMatchingSizes(WIDTHS)}
-      alt="Sillas apiladas"
-    />
-  </div>
+  <FadeImage
+    quality={10}
+    class="fixed inset-0 max-h-dvh min-h-screen max-w-dvw min-w-screen object-cover opacity-30"
+    format="png"
+    src={sillas}
+    alt="Sillas apiladas"
+  />
 </Layout>
