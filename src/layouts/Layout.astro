@@ -8,6 +8,7 @@ import { DATE_UTC } from "../lib/constants";
 import Nav from "../components/Nav/Nav.astro";
 import "../styles/global.css";
 import SkipTo from "../components/SkipTo.astro";
+import BackgroundImage from "../components/BackgroundImage.astro";
 
 const {
   src: ogImageSrc,
@@ -22,9 +23,25 @@ const {
 });
 
 type Props = Omit<ComponentProps<typeof SEO>, "titleDefault"> &
-  Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list">;
+  Pick<astroHTML.JSX.HTMLAttributes, "class" | "class:list"> &
+  (
+    | {
+        index: true;
+        section?: undefined;
+      }
+    | {
+        index?: undefined;
+        section: string;
+      }
+  );
 
-const { class: className, "class:list": classList, ...props } = Astro.props;
+const {
+  class: className,
+  "class:list": classList,
+  section,
+  index,
+  ...props
+} = Astro.props;
 
 const dateString = DATE_UTC.toLocaleDateString("es-AR", {
   day: "numeric",
@@ -33,8 +50,8 @@ const dateString = DATE_UTC.toLocaleDateString("es-AR", {
   timeZone: "utc",
 });
 
-const title = `FestivAE - ${dateString}`;
-const description = `Festival de estudiantes de Artes Electrónicas de la Universidad de Tres de Febrero que sucederá el ${dateString}`;
+const title = `${index ? "" : `${section} - `}FestivAE - ${dateString}`;
+const description = `${index ? "" : `${section} del `}Festival de estudiantes de Artes Electrónicas de la Universidad de Tres de Febrero que sucederá el ${dateString}`;
 const url = new URL("https://festivae.com.ar");
 // Try to force cache bust for OG image
 const image = new URL(
@@ -93,5 +110,6 @@ const image = new URL(
     <SkipTo name="Navegación" href="#navigation" />
     <slot />
     <Nav />
+    {!index && <BackgroundImage />}
   </body>
 </html>

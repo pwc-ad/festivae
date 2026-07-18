@@ -1,5 +1,4 @@
 ---
-import BackgroundImage from "../components/BackgroundImage.astro";
 import Container from "../components/Container.astro";
 import Heading from "../components/Heading.astro";
 import List from "../components/List.astro";
@@ -10,13 +9,13 @@ import Layout from "../layouts/Layout.astro";
 import GlowTag from "../components/GlowTag.astro";
 ---
 
-<Layout>
+<Layout section="Código de convivencia">
   <Main
     class="flex flex-col text-base leading-relaxed tracking-wide text-neutral-50 md:py-10 md:text-2xl"
   >
     <Container as="article" gap="lg">
       <header>
-        <Heading class="w-full text-center">
+        <Heading id="codigo-de-convivencia" class="w-full text-center">
           Código de convivencia FestivAE
         </Heading>
       </header>
@@ -136,5 +135,4 @@ import GlowTag from "../components/GlowTag.astro";
       <p class="text-4xl uppercase">FestivAE</p>
     </GlowTag>
   </Main>
-  <BackgroundImage />
 </Layout>

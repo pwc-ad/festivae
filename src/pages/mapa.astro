@@ -3,7 +3,6 @@ import predio from "../assets/predio.jpeg";
 import plantaBaja from "../assets/planta-baja.jpeg";
 import primerPiso from "../assets/primer-piso.jpeg";
 import segundoPiso from "../assets/segundo-piso.jpeg";
-import BackgroundImage from "../components/BackgroundImage.astro";
 import Layout from "../layouts/Layout.astro";
 import Main from "../components/Main.astro";
 import LightBox from "../components/LightBox.astro";
@@ -12,7 +11,7 @@ import Heading from "../components/Heading.astro";
 import List from "../components/List.astro";
 ---
 
-<Layout>
+<Layout section="Mapa">
   <Main>
     <Container id="content" as="article" gap="lg">
       <Container as="section" class="text-lg md:text-2xl">
@@ -97,5 +96,4 @@ import List from "../components/List.astro";
       </Container>
     </Container>
   </Main>
-  <BackgroundImage />
 </Layout>
