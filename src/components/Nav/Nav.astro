@@ -25,12 +25,12 @@ const ROUTES = [
     icon: "mdi:map-search",
     smallIcon: true,
   },
-  // {
-  //   href: "/cronograma",
-  //   name: "Cronograma",
-  //   icon: "mdi:calendar-clock",
-  //   smallIcon: true,
-  // },
+  {
+    href: "/cronograma",
+    name: "Cronograma",
+    icon: "mdi:calendar-clock",
+    smallIcon: true,
+  },
 ] as const satisfies Array<Route>;
 
 const SOCIALS = [
@@ -52,7 +52,7 @@ const SOCIALS = [
     class="fixed bottom-0 z-20 flex h-16 w-full items-center justify-center sm:bottom-4"
   >
     <ul
-      class="flex size-full items-center justify-around bg-neutral-900 p-4 text-xl text-neutral-400 uppercase inset-shadow-xs inset-shadow-neutral-50/50 sm:max-w-md sm:justify-between sm:rounded-xl sm:border sm:border-white/5 sm:shadow-lg sm:inset-shadow-sm"
+      class="flex size-full items-center justify-around bg-neutral-900 p-4 text-xl text-neutral-400 uppercase inset-shadow-xs inset-shadow-neutral-50/50 sm:max-w-xl sm:justify-between sm:rounded-xl sm:border sm:border-white/5 sm:shadow-lg sm:inset-shadow-sm"
     >
       {
         ROUTES.map((route) => (

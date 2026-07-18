@@ -1,0 +1,118 @@
+---
+import Container from "../components/Container.astro";
+import Heading from "../components/Heading.astro";
+import LightBox from "../components/LightBox.astro";
+import Main from "../components/Main.astro";
+import Layout from "../layouts/Layout.astro";
+import lpsv from "../assets/lpsv.jpeg";
+import List from "../components/List.astro";
+import GlowTag from "../components/GlowTag.astro";
+---
+
+<Layout section="Cronograma">
+  <Main>
+    <Container as="article" id="content" gap="lg">
+      <header>
+        <Heading id="cronograma"> Cronograma: </Heading>
+      </header>
+      <div class="text-center">
+        <Heading as="h2" class="max-w-lg" id="lpsv">
+          Laboratorio de Performance Sonora y Visual
+        </Heading>
+      </div>
+      <Container as="section" class="w-full text-lg md:text-2xl">
+        <header class="text-center">
+          <Heading as="h3" class="max-w-xl" id="lpsv-title">
+            Exposición de trabajos finales de la materia de Laboratorio de
+            Performance Sonora y Visual
+          </Heading>
+        </header>
+        <LightBox
+          src={lpsv}
+          class="brightness-150 contrast-150"
+          alt="Cronograma laboratorio de performance sonora y visual"
+          id="cronograma-lpsv"
+          invertClose
+        />
+      </Container>
+      <Container as="section" class="w-full text-lg md:text-2xl">
+        <header>
+          <Heading as="h3" class="uppercase" id="lpsv-performances">
+            Performances:
+          </Heading>
+        </header>
+        <List>
+          <li>
+            <p>
+              <GlowTag as="b" class="drop-shadow-fae-purple">
+                Danza mecánica:{" "}
+              </GlowTag>
+              <GlowTag as="i" class="drop-shadow-neutral-50"
+                >Agustín Martínez Argibay y Leandro Ragusa</GlowTag
+              >
+            </p>
+          </li>
+          <li>
+            <p>
+              <GlowTag as="b" class="drop-shadow-fae-purple">
+                Jugando al amor:{" "}
+              </GlowTag>
+              <GlowTag as="i" class="drop-shadow-neutral-50">
+                Natalí Darmograj y Pablo Tula
+              </GlowTag>
+            </p>
+          </li>
+          <li>
+            <p>
+              <GlowTag as="b" class="drop-shadow-fae-purple">
+                Experiencia de frontera:{" "}
+              </GlowTag>
+              <GlowTag as="i" class="drop-shadow-neutral-50">Sáccea</GlowTag>
+            </p>
+          </li>
+          <li>
+            <p>
+              <GlowTag as="b" class="drop-shadow-fae-purple">
+                De ceniza:{" "}
+              </GlowTag>
+              <GlowTag as="i" class="drop-shadow-neutral-50">Caral</GlowTag>
+            </p>
+          </li>
+        </List>
+      </Container>
+      <Container as="section" class="w-full text-lg md:text-2xl">
+        <header>
+          <Heading as="h3" class="uppercase" id="lpsv-horarios">
+            Horarios
+          </Heading>
+        </header>
+        <GlowTag class="text-center uppercase drop-shadow-neutral-50">
+          Las funciones sucederán a las{" "}
+          <span class="sr-only">Ocho de la noche</span>
+          <span aria-hidden="true">20:00 hs{" "}</span>
+          y a las{" "}
+          <span class="sr-only">Diez de la noche</span>
+          <span aria-hidden="true">22:00 hs.</span>
+        </GlowTag>
+      </Container>
+      <Container as="section" class="w-full text-lg md:text-2xl">
+        <header>
+          <Heading as="h3" class="uppercase" id="lpsv-docentes">
+            Docentes:
+          </Heading>
+        </header>
+        <GlowTag class="drop-shadow-neutral-50">
+          Javier Plano y Jorge Crowe
+        </GlowTag>
+      </Container>
+      <Container as="section" class="w-full text-lg md:text-2xl">
+        <header>
+          <Heading as="h3" class="uppercase" id="lpsv-ayudante">
+            Ayudante:
+          </Heading>
+        </header>
+        <GlowTag class="drop-shadow-neutral-50"> Solana Serrano </GlowTag>
+      </Container>
+    </Container>
+  </Main>
+</Layout>

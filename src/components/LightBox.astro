@@ -5,9 +5,16 @@ import { Icon } from "astro-icon/components";
 
 type Props = ComponentProps<typeof FadeImage> & {
   id: string;
+  invertClose?: true;
 };
 
-const { class: className, "class:list": classList, id, ...props } = Astro.props;
+const {
+  class: className,
+  "class:list": classList,
+  id,
+  invertClose,
+  ...props
+} = Astro.props;
 ---
 
 <FadeImage class:list={["md:hidden", className, classList]} {...props} />
@@ -24,7 +31,7 @@ const { class: className, "class:list": classList, id, ...props } = Astro.props;
 </button>
 
 <dialog
-  class="animate-dialog fixed inset-0 z-50 m-auto w-full rounded-xl border border-neutral-50 bg-neutral-900 p-0 normal-case shadow-2xl inset-shadow-sm inset-shadow-neutral-50/50 transition motion-reduce:animate-dialog-duration-0"
+  class="animate-dialog fixed inset-0 z-50 m-auto rounded-xl border border-neutral-50 bg-neutral-900 p-0 normal-case shadow-2xl inset-shadow-sm inset-shadow-neutral-50/50 transition motion-reduce:animate-dialog-duration-0"
   style={{
     "--tw-anim-dialog-backdrop-background":
       "color-mix(in oklab, var(--color-neutral-900) 50%, transparent);",
@@ -33,7 +40,12 @@ const { class: className, "class:list": classList, id, ...props } = Astro.props;
   id={id}
 >
   <button
-    class="fixed top-4 right-4 z-20 cursor-pointer rounded-full bg-neutral-950/50 p-2 text-neutral-50"
+    class:list={[
+      "fixed top-4 right-4 z-20 cursor-pointer rounded-full p-2",
+      invertClose
+        ? "bg-neutral-50/50 text-neutral-900"
+        : "bg-neutral-950/50 text-neutral-50",
+    ]}
     type="button"
     command="close"
     commandfor={id}
