@@ -12,6 +12,7 @@ type Props = ComponentProps<typeof Image> & {
 const {
   blur = "motion-safe:blur-sm",
   class: className,
+  "class:list": classList,
   optimal = auto,
   ...props
 } = Astro.props;
@@ -21,7 +22,8 @@ const {
   class:list={[
     blur,
     className,
-    "opacity-0 transition noscript:opacity-100 noscript:blur-none",
+    classList,
+    "opacity-0 motion-safe:transition noscript:opacity-100 noscript:blur-none",
   ]}
   data-blur={blur}
   data-optimal={optimal ?? auto}

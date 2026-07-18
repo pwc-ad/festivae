@@ -1,0 +1,17 @@
+---
+import CopyBankAlias from "../svelte/CopyBankAlias.svelte";
+
+import NavHint from "./NavHint.astro";
+import NavLink from "./NavLink.astro";
+
+const name = "Aportes";
+const id = name.toLowerCase();
+---
+
+<CopyBankAlias
+  client:load
+  class="animate-tada text-neutral-50 uppercase drop-shadow-centered drop-shadow-fae-green transition animate-duration-1000 animate-iteration-count-4 hover:animate-none focus:animate-none active:scale-90 motion-reduce:animate-none"
+  interestfor={id}
+>
+  <NavLink id={id} name={name} icon="mdi:attach-money" href="" smallIcon />
+</CopyBankAlias>

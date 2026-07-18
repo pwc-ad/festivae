@@ -61,7 +61,7 @@
   // }
 </script>
 
-<Shader class="size-full h-screen fixed inset-0 z-0" disableTelemetry>
+<Shader class="size-full h-screen fixed inset-0 -z-10" disableTelemetry>
   <MotionSafe>
     {#if videoSrc}
       <Contour>

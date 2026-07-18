@@ -1,0 +1,13 @@
+---
+import sillas from "../assets/sillas.png";
+
+import FadeImage from "./FadeImage.astro";
+---
+
+<FadeImage
+  quality={10}
+  class="fixed inset-0 -z-10 max-h-dvh min-h-screen max-w-dvw min-w-screen object-cover opacity-30"
+  format="png"
+  src={sillas}
+  alt="Sillas apiladas"
+/>

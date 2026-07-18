@@ -11,19 +11,33 @@
     header: Snippet;
   }
 
-  const { children, class: className, copy, content, header }: Props = $props();
+  const {
+    children,
+    class: className,
+    copy,
+    content,
+    header,
+    ...rest
+  }: Props = $props();
 
   const id = $props.id();
 
   let open = $state(false);
-  let dialog: HTMLDialogElement;
   const motionSafeMatcher = new MediaQuery(
     "(prefers-reduced-motion: no-preference)",
   );
 
+  let trigger: HTMLButtonElement;
+  function attachTrigger(element: HTMLButtonElement) {
+    trigger = element;
+  }
+
+  let dialog: HTMLDialogElement;
   function attachDialog(element: HTMLDialogElement) {
     dialog = element;
   }
+
+
 
   function onclose() {
     open = false;
@@ -35,10 +49,14 @@
   }
 
   $effect(() => {
-    if (open) {
-      dialog.showModal();
-    } else {
-      dialog.close();
+    const supportsInvokerCommands =
+      "commandForElement" in trigger;
+    if (!supportsInvokerCommands) {
+      if (open) {
+        dialog.showModal();
+      } else {
+        dialog.close();
+      }
     }
   });
 </script>
@@ -49,6 +67,8 @@
   commandfor={id}
   {onclick}
   type="button"
+  {...rest}
+  {@attach attachTrigger}
 >
   {@render children()}
 </button>
@@ -78,8 +98,8 @@
         {@render content()}
         <noscript>
           <p>
-            No está habilitado ejecutar scripts con tu navegador, ofrecemos
-            alternativamente copiar: <code>{copy}</code>
+            No está habilitado ejecutar scripts con tu navegador, ofrecemos la
+            alternative de copiar manualmente: <code>{copy}</code>
           </p>
         </noscript>
       </div>

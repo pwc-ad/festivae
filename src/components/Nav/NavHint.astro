@@ -1,0 +1,71 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div
+  id={id}
+  class="-translate-y-1/4 rounded-md border border-white/5 bg-neutral-800 p-2 text-neutral-50 capitalize inset-shadow-sm inset-shadow-neutral-50/50 [position-area:top] motion-safe:transition md:hidden starting:translate-y-0 starting:scale-90 starting:opacity-0"
+  popover="hint"
+>
+  <slot />
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const isInterestInvokerSupported = Object.hasOwn(
+      HTMLButtonElement.prototype,
+      "interestForElement",
+    );
+
+    if (!isInterestInvokerSupported) {
+      const listeners = {} as {
+        [Key in `${string}-${"show" | "hide"}`]: VoidFunction;
+      };
+      document.querySelectorAll("[interestfor]").forEach((element) => {
+        const focusableElement = element as
+          HTMLAnchorElement | HTMLButtonElement;
+        const id = element.getAttribute("interestfor");
+        const target = id && document.getElementById(id);
+
+        if (target) {
+          const show = () => {
+            target.showPopover({ source: focusableElement });
+          };
+          const hide = () => {
+            target.hidePopover();
+          };
+          listeners[`${id}-show`] = show;
+          listeners[`${id}-hide`] = hide;
+          focusableElement.addEventListener("focus", show);
+          focusableElement.addEventListener("blur", hide);
+          focusableElement.addEventListener("pointerover", show);
+          focusableElement.addEventListener("pointerout", hide);
+        }
+      });
+
+      function beforeSwap() {
+        Object.keys(listeners).forEach((id) => {
+          const element = document.querySelector(`[interstfor="${id}"]`);
+          const target = document.getElementById(id);
+
+          if (element && target) {
+            const focusableElement = element as
+              HTMLAnchorElement | HTMLButtonElement;
+            const show = listeners[`${id}-show`];
+            const hide = listeners[`${id}-hide`];
+            focusableElement.removeEventListener("focus", show);
+            focusableElement.removeEventListener("blur", hide);
+            focusableElement.removeEventListener("mouseover", show);
+            focusableElement.removeEventListener("mouseout", hide);
+          }
+        });
+      }
+
+      document.addEventListener("astro:before-swap", beforeSwap);
+    }
+  });
+</script>

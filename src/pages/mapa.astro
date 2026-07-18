@@ -1,0 +1,101 @@
+---
+import predio from "../assets/predio.jpeg";
+import plantaBaja from "../assets/planta-baja.jpeg";
+import primerPiso from "../assets/primer-piso.jpeg";
+import segundoPiso from "../assets/segundo-piso.jpeg";
+import BackgroundImage from "../components/BackgroundImage.astro";
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import LightBox from "../components/LightBox.astro";
+import Container from "../components/Container.astro";
+import Heading from "../components/Heading.astro";
+import List from "../components/List.astro";
+---
+
+<Layout>
+  <Main>
+    <Container id="content" as="article" gap="lg">
+      <Container as="section" class="text-lg md:text-2xl">
+        <header><Heading as="h2" id="predio"> Predio </Heading></header>
+        <LightBox
+          id="lightbox-predio"
+          class="brightness-125 contrast-125"
+          quality={10}
+          src={predio}
+          alt="Predio"
+        />
+        <p>
+          Al fondo a la derecha, dentro del edificio principal, se encuentra el
+          buffet.
+        </p>
+        <p>
+          Al fondo a la izquierda, cruzando el patio, se encuentra el escenario
+          dentro del galpón.
+        </p>
+      </Container>
+      <Container as="section" class="text-lg md:text-2xl">
+        <header>
+          <Heading as="h2" id="planta-baja"> Planta baja </Heading>
+        </header>
+        <LightBox
+          id="lightbox-planta-baja"
+          class="brightness-125 contrast-125"
+          quality={10}
+          src={plantaBaja}
+          alt="Planta baja"
+        />
+        <p>Exposiciones en las aulas de planta baja:</p>
+        <List>
+          <li>Aula 4: Laboratorio 6</li>
+          <li>Aula 5: Laboratorio 5</li>
+          <li>Aula 7: Laboratorio 3</li>
+          <li>Aula 10: Laboratorio 3</li>
+          <li>Aula 11: Laboratorio de tecnologías inmersivas</li>
+          <li>Aula 12: Laboratorio 3</li>
+          <li>Aula 13: Aula intergaláctica universitaria</li>
+          <li>Aula 14: Laboratorio 2</li>
+        </List>
+        <p>En este piso hay baños.</p>
+      </Container>
+      <Container as="section" class="text-lg md:text-2xl">
+        <header>
+          <Heading as="h2" id="primer-piso"> Primer piso </Heading>
+        </header>
+        <LightBox
+          id="lightbox-primer-piso"
+          class="brightness-125 contrast-125"
+          quality={10}
+          src={primerPiso}
+          alt="Primer piso"
+        />
+        <p>Exposiciones en las aulas del primer piso:</p>
+        <List>
+          <li>Aulas 102 a 106: Laboratorio 1</li>
+          <li>Aula 107: Taller de técnicas y procesos materiales</li>
+          <li>Aulas 109 y 110: Laboratorio de performance sonora y visual</li>
+          <li>Aulas 111 y 113: Laboratorio 3</li>
+          <li>Aulas 114 a 116: Laboratorio 1</li>
+        </List>
+        <p>En este piso hay baños.</p>
+      </Container>
+      <Container as="section" class="text-lg md:text-2xl">
+        <header>
+          <Heading as="h2" id="segundo-piso"> Segundo piso </Heading>
+        </header>
+        <LightBox
+          id="lightbox-segundo-piso"
+          class="brightness-125 contrast-125"
+          quality={10}
+          src={segundoPiso}
+          alt="Segundo piso"
+        />
+        <p>Exposiciones en las aulas del segundo piso:</p>
+        <List>
+          <li>Aula 201: Aula Carlos Sztaynberg</li>
+          <li>Aulas 205 a 209: Galería de interfaces</li>
+        </List>
+      </Container>
+    </Container>
+  </Main>
+  <BackgroundImage />
+</Layout>

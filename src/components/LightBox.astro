@@ -1,0 +1,70 @@
+---
+import type { ComponentProps } from "astro/types";
+import FadeImage from "./FadeImage.astro";
+import { Icon } from "astro-icon/components";
+
+type Props = ComponentProps<typeof FadeImage> & {
+  id: string;
+};
+
+const { class: className, "class:list": classList, id, ...props } = Astro.props;
+---
+
+<FadeImage class:list={["md:hidden", className, classList]} {...props} />
+
+<button
+  aria-label="Abrir imagen en mayor tamaño"
+  class="cursor-pointer active:scale-95 motion-safe:transition max-md:hidden"
+  commandfor={id}
+  data-lightbox={id}
+  command="show-modal"
+  type="button"
+>
+  <FadeImage class:list={[className, classList]} {...props} />
+</button>
+
+<dialog
+  class="animate-dialog fixed inset-0 z-50 m-auto w-full rounded-xl border border-neutral-50 bg-neutral-900 p-0 normal-case shadow-2xl inset-shadow-sm inset-shadow-neutral-50/50 transition motion-reduce:animate-dialog-duration-0"
+  style={{
+    "--tw-anim-dialog-backdrop-background":
+      "color-mix(in oklab, var(--color-neutral-900) 50%, transparent);",
+    "--tw-anim-dialog-backdrop-filter": "blur(0px)",
+  }}
+  id={id}
+>
+  <button
+    class="fixed top-4 right-4 z-20 cursor-pointer rounded-full bg-neutral-950/50 p-2 text-neutral-50"
+    type="button"
+    command="close"
+    commandfor={id}
+    data-lightbox-close={id}
+  >
+    <Icon class="size-8" name="mdi:close" />
+  </button>
+  <FadeImage class:list={[className, classList]} {...props} />
+</dialog>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("[data-lightbox]").forEach((element) => {
+      if (!("commandForElement" in element)) {
+        const buttonElement = element as HTMLButtonElement;
+        const id = buttonElement.dataset["lightbox-id"] ?? "";
+
+        const target = document.getElementById(id) as HTMLDialogElement | null;
+        const buttonClose = document.querySelector(
+          `[data-lightbox-close="${id}"]`,
+        ) as HTMLButtonElement | null;
+
+        if (target) {
+          buttonElement.addEventListener("click", () => {
+            target.showModal();
+          });
+          buttonClose?.addEventListener("click", () => {
+            target.close();
+          });
+        }
+      }
+    });
+  });
+</script>

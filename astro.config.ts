@@ -29,6 +29,23 @@ export default defineConfig({
       cssVariable: "--font-turret-road",
     },
   ],
-  integrations: [clientOptimalDirective(), icon(), svelte()],
+  integrations: [
+    clientOptimalDirective(),
+    icon({
+      include: {
+        mdi: [
+          "attach-money",
+          "calendar-clock",
+          "close",
+          "file-document-alert",
+          "house",
+          "instagram",
+          "map-search",
+          "youtube",
+        ],
+      },
+    }),
+    svelte(),
+  ],
   redirects,
 });

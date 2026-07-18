@@ -1,9 +1,8 @@
 ---
 import type { ComponentProps } from "astro/types";
 
-import CopyBankAlias from "../svelte/CopyBankAlias.svelte";
-
 import NavLink from "./NavLink.astro";
+import NavCopyBankAlias from "./NavCopyBankAlias.astro";
 
 type Route = ComponentProps<typeof NavLink>;
 
@@ -11,18 +10,34 @@ const ROUTES = [
   {
     href: "/",
     name: "Inicio",
+    icon: "mdi:house",
+    smallIcon: true,
   },
   {
     href: "/codigo-de-convivencia",
     name: "Convivencia",
+    icon: "mdi:file-document-alert",
+    smallIcon: true,
   },
+  {
+    href: "/mapa",
+    name: "Mapa",
+    icon: "mdi:map-search",
+    smallIcon: true,
+  },
+  // {
+  //   href: "/cronograma",
+  //   name: "Cronograma",
+  //   icon: "mdi:calendar-clock",
+  //   smallIcon: true,
+  // },
 ] as const satisfies Array<Route>;
 
 const SOCIALS = [
   {
     href: "https://www.youtube.com/@festivaaee",
     icon: "mdi:youtube",
-    name: "Youtube",
+    name: "YouTube",
   },
   {
     href: "https://www.instagram.com/festiv.ae/",
@@ -32,21 +47,30 @@ const SOCIALS = [
 ] as const satisfies Array<Route>;
 ---
 
-<footer class="h-16 w-full md:h-20">
+<footer class="h-16 w-full sm:h-20">
   <nav
-    class="fixed bottom-0 z-20 flex h-16 w-full items-center justify-center md:bottom-4"
+    class="fixed bottom-0 z-20 flex h-16 w-full items-center justify-center sm:bottom-4"
   >
     <ul
-      class="flex size-full items-center justify-between bg-neutral-900 p-4 text-xl text-neutral-300 uppercase inset-shadow-sm inset-shadow-neutral-50/50 md:max-w-sm md:rounded-xl md:border md:border-white/5 md:shadow-lg"
+      class="flex size-full items-center justify-around bg-neutral-900 p-4 text-xl text-neutral-400 uppercase inset-shadow-xs inset-shadow-neutral-50/50 sm:max-w-md sm:justify-between sm:rounded-xl sm:border sm:border-white/5 sm:shadow-lg sm:inset-shadow-sm"
     >
-      {ROUTES.map((route) => <NavLink {...route} />)}
+      {
+        ROUTES.map((route) => (
+          <li>
+            <NavLink {...route} />
+          </li>
+        ))
+      }
       <li>
-        <CopyBankAlias
-          client:load
-          class="animate-tada text-neutral-50 uppercase drop-shadow-centered drop-shadow-fae-green transition animate-duration-1000 animate-iteration-count-4 hover:animate-none focus:animate-none active:scale-90 motion-reduce:animate-none"
-        />
+        <NavCopyBankAlias />
       </li>
-      {SOCIALS.map((route) => <NavLink {...route} />)}
+      {
+        SOCIALS.map((route) => (
+          <li>
+            <NavLink {...route} />
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </footer>

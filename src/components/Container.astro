@@ -1,6 +1,6 @@
 ---
 import type { HTMLTag, PolymorphicAttributes } from "astro/types";
-import { cleanAstroClasslist } from "../../lib/utils/astro";
+import { cleanAstroClasslist } from "../lib/utils/astro";
 
 type Props<Tag extends ValidTags> = PolymorphicAttributes<{
   as: Tag;

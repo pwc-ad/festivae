@@ -1,42 +1,52 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Link from "../Link.astro";
 import { navItemClass } from "./navStyles";
+
+import Link from "../Link.astro";
+import type { HTMLAttributes } from "astro/types";
+import NavHint from "./NavHint.astro";
 
 const { routePattern: pathname } = Astro;
 
-interface Props {
+interface Props extends HTMLAttributes<"a"> {
+  id?: string;
   href: string;
-  icon?: string;
+  icon: string;
   name: string;
+  smallIcon?: true;
 }
 
-const { href, icon, name } = Astro.props;
+const { href, icon, id = href, name, smallIcon, ...props } = Astro.props;
+
+const Tag = href ? Link : "span";
+
+const tagProps = href
+  ? {
+      id: pathname === href ? "navigation" : undefined,
+      href,
+      interestfor: id,
+      external: !href.startsWith("/"),
+    }
+  : { href: undefined as unknown as string };
 ---
 
-<li>
-  <Link
-    class:list={[
-      "underline",
-      navItemClass,
-      pathname === href
-        ? "font-bold text-neutral-100 drop-shadow-fae-purple"
-        : "drop-shadow-transparent",
-    ]}
-    id={pathname === href ? "navigation" : undefined}
-    href={href}
-    external={!href.startsWith("/")}
-  >
-    {
-      icon ? (
-        <>
-          <Icon class="size-8" name={icon} aria-hidden="true" />
-          <span class="sr-only">{name}</span>
-        </>
-      ) : (
-        name
-      )
-    }
-  </Link>
-</li>
+<Tag
+  class:list={[
+    "font-bold underline",
+    navItemClass,
+    pathname === href
+      ? "text-neutral-100 drop-shadow-fae-purple"
+      : "drop-shadow-transparent",
+  ]}
+  {...tagProps}
+>
+  <Icon
+    class:list={["size-8", smallIcon && "sm:hidden"]}
+    name={icon}
+    aria-hidden="true"
+  />
+  <span class={smallIcon ? "max-sm:sr-only" : "sr-only"}>{name}</span>
+</Tag>
+
+<NavHint id={id}>{name}</NavHint>

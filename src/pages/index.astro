@@ -12,15 +12,14 @@ import {
 import FadeImage from "../components/FadeImage.astro";
 // import Countdown from "../components/svelte/Countdown.svelte";
 import Link from "../components/Link.astro";
+import Main from "../components/Main.astro";
 import { getSillas } from "../lib/images";
 
 const { src: sillasSrc } = await getSillas();
 ---
 
-<Layout class="overflow-x-hidden bg-neutral-950 text-neutral-100">
-  <main
-    class="relative z-10 container mx-auto flex size-full max-w-3xl flex-col items-center justify-between gap-10 p-5 drop-shadow-centered-lg drop-shadow-neutral-950 transition starting:opacity-0 motion-safe:starting:blur-sm"
-  >
+<Layout>
+  <Main>
     <article
       id="content"
       class="flex w-full flex-col items-center justify-center gap-10"
@@ -177,10 +176,10 @@ const { src: sillasSrc } = await getSillas();
         </GlowTag>
       </footer>
     </article>
-  </main>
+  </Main>
   <InteractiveBackground fallbackImageSrc={sillasSrc} client:optimal />
   <FadeImage
-    class="fixed inset-0 size-full object-cover"
+    class="fixed inset-0 -z-10 size-full object-cover"
     fit="cover"
     src={sillas}
     alt="Sillas apiladas"

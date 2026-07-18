@@ -1,17 +1,18 @@
 ---
-import sillas from "../assets/sillas.png";
-import FadeImage from "../components/FadeImage.astro";
-import Container from "../components/Generic/Container.astro";
-import Heading from "../components/Generic/Heading.astro";
-import List from "../components/Generic/List.astro";
+import BackgroundImage from "../components/BackgroundImage.astro";
+import Container from "../components/Container.astro";
+import Heading from "../components/Heading.astro";
+import List from "../components/List.astro";
 import Link from "../components/Link.astro";
 import Logo from "../components/Logo.astro";
+import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
+import GlowTag from "../components/GlowTag.astro";
 ---
 
-<Layout class="bg-neutral-950 text-neutral-50">
-  <main
-    class="relative z-10 mx-auto flex min-h-dvh max-w-3xl flex-col px-4 py-6 text-base leading-relaxed tracking-wide transition md:py-10 md:text-2xl starting:opacity-0 motion-safe:starting:blur-sm"
+<Layout>
+  <Main
+    class="flex flex-col text-base leading-relaxed tracking-wide text-neutral-50 md:py-10 md:text-2xl"
   >
     <Container as="article" gap="lg">
       <header>
@@ -127,16 +128,13 @@ import Layout from "../layouts/Layout.astro";
         </p>
       </Container>
     </Container>
-    <footer class="flex w-full flex-col items-center justify-center">
+    <GlowTag
+      as="footer"
+      class="flex w-full flex-col items-center justify-center drop-shadow-neutral-50"
+    >
       <Logo class="size-44 pt-8" />
       <p class="text-4xl uppercase">FestivAE</p>
-    </footer>
-  </main>
-  <FadeImage
-    quality={10}
-    class="fixed inset-0 max-h-dvh min-h-screen max-w-dvw min-w-screen object-cover opacity-30"
-    format="png"
-    src={sillas}
-    alt="Sillas apiladas"
-  />
+    </GlowTag>
+  </Main>
+  <BackgroundImage />
 </Layout>
